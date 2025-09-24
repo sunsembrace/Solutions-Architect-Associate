@@ -27,3 +27,12 @@ Solved a timeout error.
 Tip - if timeout ever occurs this is 100% because of an EC2 security group issue. E.g Try to HTTP query or SSH into it and it doesn’t load.
 Solution: Add HTTP rule with source anywhere. → Inbound rule fix.
 Can do it with any type and any source/ip → E.g our own IP.
+
+4. Accessing EC2 with IAM credentials.
+Practice IAM roles with SSH.
+Dont run aws configure and enter your personal details because anyone who connects to that ec2 can find that info. Rule of thumb - Never enter your personal access or secret access key. What we do instead is use IAM roles.
+So create an IAM role if one doesn't exist already, attach it to the EC2 by going to action → security → modify IAM role → pick the role to attract.
+Now if you do 
+Aws iam list-users.
+You can then have access to the ec2 instance.
+If you try to run the same aws iam list-users command after detaching the role, you’ll get an Access Denied.
