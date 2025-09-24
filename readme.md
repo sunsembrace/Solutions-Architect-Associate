@@ -21,3 +21,9 @@ Yum install -y httpd
 Systemctl start httpd
 Systemctl enable httpd
 Echo “<h1>Hello World from $(hostname -f) </h1>” > /var/www/html/index.html
+
+3. Security Groups Troubleshoot a website not loading.
+Solved a timeout error.
+Tip - if timeout ever occurs this is 100% because of an EC2 security group issue. E.g Try to HTTP query or SSH into it and it doesn’t load.
+Solution: Add HTTP rule with source anywhere. → Inbound rule fix.
+Can do it with any type and any source/ip → E.g our own IP.
