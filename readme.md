@@ -58,3 +58,14 @@ Go down to Elastic IPs → Allocate Elastic IP address → from amazon’s pool 
 EC2 Placement groups → Create placement group → Give name, and decided placement strategy (cluster,spread,partition)  
 
 Then launch instance → advanced detail → Pick your placement group based on your strategy!
+
+8. Elastic Network Interface (ENI) - Hands on Labs.
+Launch an instance → launch 2 after doing typical settings.
+Select instance created click networking and check network interface (contains public ipv4, private ipv4, private ipv4 DNS.
+Go to network interface on left side then click create new network Interface → Pick subnet for which your ec2 is in. → Attach security group → Create Network interface. →  Now you have created a secondary IPv4 → You can then click actions → Attach → Choose an instance.
+Now you’ll be able to view it in the network interface GUI → Now why do this? Because this ENI we have control over and can move it from one EC2 to another. You detach it and re-attach it to a different EC2. 
+This really helps with fail over. 
+
+If we terminate the EC2’s. The ENI we created is going to remain but the two ENIs w/ the other EC2s will be automatically deleted. More control over IPv4 and networking.
+
+ENI doesn’t cost any money if we leave it on.
