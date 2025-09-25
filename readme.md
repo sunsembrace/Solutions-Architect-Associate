@@ -69,3 +69,11 @@ This really helps with fail over.
 If we terminate the EC2’s. The ENI we created is going to remain but the two ENIs w/ the other EC2s will be automatically deleted. More control over IPv4 and networking.
 
 ENI doesn’t cost any money if we leave it on.
+
+9. EC2 Hibernate - Hands on Labs.
+Launch an EC2 → Do normal settings → Advanced Settings → Enable “stop-Hibernate behaviour” → In advanced, go to storage volumes → Encrypt storage and choose sufficient size e.g 8GB would be enough for a t2.micro as it only has 1GiB memory. → then Launch.
+ 
+How to prove it's enabled?
+EC2 instant connect to connect to ec2.
+Use the uptime command and show us how long it's been up. 
+Now disconnect from your instance instant connect → go to instance state and click hibernate instance → Then it should be stopped, then start it again → then use ec2 instant connect and do uptime and it should start from a different number rather than 0!
