@@ -53,4 +53,8 @@ Hourly charge for idle Public IPv4 Address: $.005
 
 Go down to Elastic IPs → Allocate Elastic IP address → from amazon’s pool of ipv4s address → creates an ipv4 address to be allocated to an ec2 instance → Click Action again, associate Elastic IP address → Then decide Instance or Network interface → Choose private IP address to associate it with.
 
+7. Create a placement group  - Hands on labs.
 
+EC2 Placement groups → Create placement group → Give name, and decided placement strategy (cluster,spread,partition)  
+
+Then launch instance → advanced detail → Pick your placement group based on your strategy!
