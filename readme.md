@@ -36,3 +36,8 @@ Now if you do
 Aws iam list-users.
 You can then have access to the ec2 instance.
 If you try to run the same aws iam list-users command after detaching the role, you’ll get an Access Denied.
+
+5. EC2 Instance Launch type - Spot fleets / Instance Hands on.
+Launched Spot Fleet.
+Learnt how to launch a spot instances through ec2.
+
