@@ -1,7 +1,7 @@
-1. Labs Created multiple budgets with IAM permissions on AWS console.
+1. Labs Created multiple budgets with IAM permissions on AWS console. - Hands on Lab.
 
 
-2. launching website on EC2 Labs - 
+2. launching website on EC2 - Hands on Lab.
 Hands-On:
 Launching an EC2 Instance running Linux
 We’ll be launching our first virtual server using AWS Console.
@@ -22,13 +22,13 @@ Systemctl start httpd
 Systemctl enable httpd
 Echo “<h1>Hello World from $(hostname -f) </h1>” > /var/www/html/index.html
 
-3. Security Groups Troubleshoot a website not loading.
+3. Security Groups Troubleshoot a website not loading. - Hands on Lab.
 Solved a timeout error.
 Tip - if timeout ever occurs this is 100% because of an EC2 security group issue. E.g Try to HTTP query or SSH into it and it doesn’t load.
 Solution: Add HTTP rule with source anywhere. → Inbound rule fix.
 Can do it with any type and any source/ip → E.g our own IP.
 
-4. Accessing EC2 with IAM credentials.
+4. Accessing EC2 with IAM credentials. - Hands on Lab.
 Practice IAM roles with SSH.
 Dont run aws configure and enter your personal details because anyone who connects to that ec2 can find that info. Rule of thumb - Never enter your personal access or secret access key. What we do instead is use IAM roles.
 So create an IAM role if one doesn't exist already, attach it to the EC2 by going to action → security → modify IAM role → pick the role to attract.
@@ -37,7 +37,20 @@ Aws iam list-users.
 You can then have access to the ec2 instance.
 If you try to run the same aws iam list-users command after detaching the role, you’ll get an Access Denied.
 
-5. EC2 Instance Launch type - Spot fleets / Instance Hands on.
+5. EC2 Instance Launch type - Spot fleets / Instance - Hands on Lab.
 Launched Spot Fleet.
 Learnt how to launch a spot instances through ec2.
+
+6. Elastic IP Hands on Lab
+Private v Public IP (IPv4)  - Hands on.
+By default, your EC2 machine comes with:
+A private IP for the internal AWS Network.
+A public IP, for the WWW.
+
+How does public IPv4 address pricing work?
+Hourly charge  for in-use Public IPv4 Address: $0.005
+Hourly charge for idle Public IPv4 Address: $.005
+
+Go down to Elastic IPs → Allocate Elastic IP address → from amazon’s pool of ipv4s address → creates an ipv4 address to be allocated to an ec2 instance → Click Action again, associate Elastic IP address → Then decide Instance or Network interface → Choose private IP address to associate it with.
+
 
