@@ -77,3 +77,14 @@ How to prove it's enabled?
 EC2 instant connect to connect to ec2.
 Use the uptime command and show us how long it's been up. 
 Now disconnect from your instance instant connect → go to instance state and click hibernate instance → Then it should be stopped, then start it again → then use ec2 instant connect and do uptime and it should start from a different number rather than 0!
+
+
+10. EBS Volume attach to EC2 - Hands on labs.
+EBS Hands on.
+Go to instance, then storage hub, and view block device (will present a volume ID).
+Can click volume ID to see it exists and can also view it easier through volume tabs.
+Can create your own volume and you have to use the same AZ as your ec2 Instance.
+To find this, click your instance, then click the networking tab, and scroll down till you find the specific AZ. e.g eu-west-1b so your EBS must be in the same.
+
+Now you can click on the created EBS → Click actions → attach it to an instance. 
+And now the instance has an EBS volume attached to it and can do it with multiple EBS volumes.
