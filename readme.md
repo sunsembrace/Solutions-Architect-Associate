@@ -88,3 +88,15 @@ To find this, click your instance, then click the networking tab, and scroll dow
 
 Now you can click on the created EBS → Click actions → attach it to an instance. 
 And now the instance has an EBS volume attached to it and can do it with multiple EBS volumes.
+
+
+11. EBS Snapshot - Hands on Labs.
+Go to EC2.
+On the left panel go to Snapshots. → gives us info.
+We can right click and copy it into any other region! (helps w/ disaster recovery).
+We can also click actions then create volume 
+
+Can click recycle bin as well to “create a retention rule”.
+This protects EBS snapshots and AMIs from accidental deletion.
+Create retention role → Resource type pick “EBS Snapshots” → Assign Retention period (days).
+Rule lock settings → Leave unlocked (retention can be modified/deleted anytime by user w perms)
