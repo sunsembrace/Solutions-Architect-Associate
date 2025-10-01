@@ -100,3 +100,34 @@ Can click recycle bin as well to “create a retention rule”.
 This protects EBS snapshots and AMIs from accidental deletion.
 Create retention role → Resource type pick “EBS Snapshots” → Assign Retention period (days).
 Rule lock settings → Leave unlocked (retention can be modified/deleted anytime by user w perms)
+
+12. AMI hands on - Hands on Lab.
+Launch an instance. (do all usual settings including picking amazon image at start).
+
+In userdata paste:
+
+#!/bin/bash
+#Use this for userdata script
+#Install httpd (Linux 2 version)
+Yum update -y
+Yum instal -y httpd
+Systemctl start httpd
+Systemctl enable httpd
+
+So script used to install httpd which is apache web server.
+Website should load  then right click ec2 → Create image
+Then do settings and click “create image” → AMI is created.
+Click AMI on left panel to see the AMI (demo image) once its created in status.
+You can launch instance from the AMI or you can create an instance and click “my AMIs” when you name your instance to find the AMI (Demo image) you created and pick it.
+
+Then we just paste in user data:
+#!/bin/bash
+#Use this for userdata script
+#Install httpd (Linux 2 version)
+Echo <”h1>Hello World from $(hostname -f)</h1>” > /var/www/html/index.html
+
+→ We just paste a file & Dont need to install httpd as the imagelready contains httpd
+→ Speeds up boot up time (hence why we create AMI)
+→ then launch it.
+→ take public IP, paste in browser, and it loads really fast!
+→ So main take away is install things which take awhile initially but then you package it as an AMI and start from the AMI to do some end customisation there for a faster bootup 
