@@ -131,3 +131,20 @@ Echo <”h1>Hello World from $(hostname -f)</h1>” > /var/www/html/index.html
 → then launch it.
 → take public IP, paste in browser, and it loads really fast!
 → So main take away is install things which take awhile initially but then you package it as an AMI and start from the AMI to do some end customisation there for a faster bootup 
+
+
+13. Encryption - Encrypt an unencrypted EBS Volume - Hands on Labs.
+Encryption: encrypt an unencrypted EBS volume.
+Create an EBS snapshot of the volume.
+Encrypt the EBS snapshot (using copy)
+Create a new EBS volume from the snapshot (the volume will also be encrypted).
+Now you can attach the encrypted volume to the original instance.
+
+EBS Encryption Hands on Lab.
+Go to EC2 → Create volume  (dont encrypt)→  When we create a snapshot, it’ll show the snapshot wont be encrypted just like the ec2.
+Go to Actions → Copy snapshot → Enable “Encrypt this snapshot” into same destination region with KMS type. → From this click “Actions” → “Create volume from snapshot” → you can now create a volume from snapshot because the underlying snapshot is encrypted!
+
+So first time just.
+ So go to EC2 → Create volume → Enable encryption → Create snapshot (will be encrypted this time).
+
+Remember to delete snapshots and volumes after!
