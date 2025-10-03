@@ -148,3 +148,29 @@ So first time just.
  So go to EC2 → Create volume → Enable encryption → Create snapshot (will be encrypted this time).
 
 Remember to delete snapshots and volumes after!
+
+
+14. Elastic File system (EFS) - Hands on Labs.
+
+
+Create EFS - Decide file system type (regional  or One zone). → enables automatic backups → Can decide Transition within lifecycle manage data wise and into which storage & enable encryption. → Performance settings → Enhanced or bursting.  (elastic recommended or provisioned) → additional settings (performance mode) → General purpose (Recommended) or Max I/O → Then pick network VPC and Mount Targets → In this choose AZ, Subnet ID, Ip address is automatic and add or create  security groups → Create EFS.
+
+Now mount it onto EC2 instance → launch instance. → Choose subnet → configure storage → edit file systems (EFS or FSX) → Add shared file system. → Can now keep boxes enabled rather than adding it manually like before. 
+Can create another ec2 and attach the same efs we used before simultaneously.
+Then connect to   instances using ec2 direct connect.
+Verify if it exists.
+
+Ls mnt/efs/fsl/
+Sudo su 
+Echo “hello world” > /mnt/efs/fsl/hello.txt
+Cat /mnt/efs/fsl/hello.txt
+
+Do this on each ec2 to check and it should work.
+ 
+
+Enhanced → Provides more flexibility and higher throughput levels for workloads with a range of performance requirements.
+
+Bursting → provides throughput that scales with basic  performance requirements
+
+In EFS you only pay for the storage used. 
+
