@@ -174,3 +174,31 @@ Bursting → provides throughput that scales with basic  performance requirement
 
 In EFS you only pay for the storage used. 
 
+15. EBS v EFS - Section clean up.
+
+Go to EFS → actions → delete file system. → Go to instances and terminate instances → Go to volumes and delete volumes → go to snapshots and delete snapshot → go to security groups and delete security groups except default. 
+
+
+16. Sending traffic to a load balancer. - Hands on Labs 
+
+Launch 2 EC2’s → Add EC2 user data 
+#!/bin/bash
+#use this for your user data (script from top to bottom.)
+Yum update -y 
+Yum install -y httpd
+Systemctl start httpd
+Systemctl enable httpd
+Echo “<h1> Hello World from $(hostname -f)</h1 >”>/var/www/html/index.html
+
+Copy ipv4 URL to ensure each instance is working on webpage
+Then click load balancer on left tab then choose which LB you want.
+Scheme → Interfacing
+IP address → IPV4
+Decide how many AZ’s it is deployed in.
+Assign a security group to the Load Balancer.  (e.g could allow type as HTTP from anywhere.
+Decide  Listeners/routing to a target group.
+
+Creating a target target group. (can do within LB Creation.)
+Group = group of x in this case it’ll be ec’2s. Set to http like the LB.
+After creation the load balancer gets a DNS name which you can paste to check web works.
+If you keep refreshing page you’ll see ip change as the application load balancer is redirecting between both ec2 instances.
