@@ -213,3 +213,18 @@ This has allowed us to tighten Network security.
 
 17.2)Application balancer rules.
 Go onto ALB → Click listeners → Add more listener rules → Define rule conditions and can add multiple → Define Rule Actions (Action types, response code, content type, response body) → set rule priority → Create rule.
+
+18. Create a Network Load Balancer - Hands on Labs.
+ EC2 → Load Balancers → Network Load Balancer (Internet facing, IPv4), 3 AZ’s with IPV4 assigned by AWS. → Inbound rules type HTTP, port 80, Source - anywhere. → Attach SG or create one in a diff tab via EC2 → Security groups → Then add SG within NLB config/creation.
+
+Then create a target group.
+EC2 → Target groups → Create target group → Select instances and name target group
+→ Protocol is TCP because it’s a network load balancer on port 80, for health check do HTTP as that is the application running on the EC2.
+
+For advanced health check settings → set healthy & unhealthy threshold from 2-10, set timeout and set interval via seconds. → Then register targets →  Select as pending below → Create target group.
+
+Now TG is created go back to network load balancer, refresh page and on listeners & routing select the TG and create network load balancer.
+
+Now enter the URL and see if the website works.
+Say it doesn’t load, lets see some of the issues on why:
+Instances are unhealthy → health checks failed → edit inbound rules and we see we allow traffic from our early application load balancer but we need to make a new rule to allow traffic from our network load balancer. → This should resolve it.
