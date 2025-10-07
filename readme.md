@@ -202,3 +202,11 @@ Creating a target target group. (can do within LB Creation.)
 Group = group of x in this case it’ll be ec’2s. Set to http like the LB.
 After creation the load balancer gets a DNS name which you can paste to check web works.
 If you keep refreshing page you’ll see ip change as the application load balancer is redirecting between both ec2 instances.
+
+17. Advanced LB - hands on labs.
+17.1) Load balancer - Advanced things - hands on lab 2.1 
+Typically we access the load balancer through our security group and the ec2’s through their own security group. Can also access ec2 through dns public ip. 
+
+But what if we wanted to access the ec2 only through the load balancer.
+Go to your ec2 security group  and edit the inbound rules and only allow it to type HTTP and change source from the security group of load balancer only.
+This has allowed us to tighten Network security.
