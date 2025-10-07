@@ -228,3 +228,8 @@ Now TG is created go back to network load balancer, refresh page and on listener
 Now enter the URL and see if the website works.
 Say it doesn’t load, lets see some of the issues on why:
 Instances are unhealthy → health checks failed → edit inbound rules and we see we allow traffic from our early application load balancer but we need to make a new rule to allow traffic from our network load balancer. → This should resolve it.
+
+19. To enable sticky sessions - hands on labs.
+Go to EC2 → target groups → actions → edit attributes → Scroll down to target selection configuration and enable Turn on stickiness. → Then choose LB generated cookie or application-based cookie. → Then duration and name it. → Save changes.
+
+→ Go to website from previous labs and refresh and you’ll see the “Hello world from x-ip → Open debugger and click network and you can keep refreshing page and you’ll see its always the same IP instance as it doesn’t change. → Using debugger check get request and you’ll see a response cookie and it’ll show an expiration date.
