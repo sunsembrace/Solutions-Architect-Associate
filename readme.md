@@ -233,3 +233,8 @@ Instances are unhealthy → health checks failed → edit inbound rules and we s
 Go to EC2 → target groups → actions → edit attributes → Scroll down to target selection configuration and enable Turn on stickiness. → Then choose LB generated cookie or application-based cookie. → Then duration and name it. → Save changes.
 
 → Go to website from previous labs and refresh and you’ll see the “Hello world from x-ip → Open debugger and click network and you can keep refreshing page and you’ll see its always the same IP instance as it doesn’t change. → Using debugger check get request and you’ll see a response cookie and it’ll show an expiration date.
+
+20. CrossZone hands on lab. 
+Create a NLB, GWLB, ALB → Click attributes to view if cross-zone load balancing is on/off.
+Regional data transfer charges may apply when cross-zone load balancing is turned on (for GWLB and NLB).
+Cross Load balancing is on by default for ALB.
