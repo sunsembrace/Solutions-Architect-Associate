@@ -244,3 +244,20 @@ Cross Load balancing is on by default for ALB.
 Go to EC2 → Load balancers → Select ALB and add a listener → change protocol from HTTP to HTTPS and port by default will be 443. → default actions to forward → Select target group → then Secure listener settings. →Select a security policy or leave as default → then default ssl/tls certificate to say where it’s from e.g from ACM or import ( paste certificate private key etc) and it’ll import it into the ACM.
 
 Similar process for NLB  → Select NLB and add a listener → change protocol to TLS port 443 → default action to forward to a target group → Choose security policy → Then choose where SSL/TLS certificate is from → Then set an Application Load Balancer Negotiation (ALBN) which is pretty advanced for TLS.
+
+22. Auto scaling Groups Hands on Labs.
+EC2 → Autoscaling group → Create ASG → DemoASG → Create launch template → do all configs such as name, AMI, instance type, Key Pair, config storage, userdata  etc. 
+
+#!/bin/bash
+# Use this for your user data (script from top to bottom)
+# Install httpd (Linux 2 version)
+Yum update -y
+Yum install -y httpd
+Systemctl start httpd
+Systemctl enable httpd
+Echo “<h1> Hello World from $(hostname-f)</h1>”> /var/www/html/index.html
+
+This creates a web server on every EC2 instance created as part of this ASG.
+Now choose instance type requirements and yes this lets you override the launch template and very advanced specificities. 
+For AZ choose “Balanced best effort.”
+Can integrate with other services - optional → Attach to an existing load balancer. → Choose from your load balancer target groups → select target groups. → Turn on Elastic Load Balancing health checks. → Decide min x max capacity → Decide if you want a target tracking policy → Decide which policy → Create ASG.
