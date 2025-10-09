@@ -238,3 +238,9 @@ Go to EC2 → target groups → actions → edit attributes → Scroll down to t
 Create a NLB, GWLB, ALB → Click attributes to view if cross-zone load balancing is on/off.
 Regional data transfer charges may apply when cross-zone load balancing is turned on (for GWLB and NLB).
 Cross Load balancing is on by default for ALB.
+
+
+21. SSL Certificate on both the ALB and the NLB hands on labs.
+Go to EC2 → Load balancers → Select ALB and add a listener → change protocol from HTTP to HTTPS and port by default will be 443. → default actions to forward → Select target group → then Secure listener settings. →Select a security policy or leave as default → then default ssl/tls certificate to say where it’s from e.g from ACM or import ( paste certificate private key etc) and it’ll import it into the ACM.
+
+Similar process for NLB  → Select NLB and add a listener → change protocol to TLS port 443 → default action to forward to a target group → Choose security policy → Then choose where SSL/TLS certificate is from → Then set an Application Load Balancer Negotiation (ALBN) which is pretty advanced for TLS.
