@@ -261,3 +261,22 @@ This creates a web server on every EC2 instance created as part of this ASG.
 Now choose instance type requirements and yes this lets you override the launch template and very advanced specificities. 
 For AZ choose “Balanced best effort.”
 Can integrate with other services - optional → Attach to an existing load balancer. → Choose from your load balancer target groups → select target groups. → Turn on Elastic Load Balancing health checks. → Decide min x max capacity → Decide if you want a target tracking policy → Decide which policy → Create ASG.
+
+23. Auto scaling Groups Hands on Labs.
+EC2 → Autoscaling group → Create ASG → DemoASG → Create launch template → do all configs such as name, AMI, instance type, Key Pair, config storage, userdata  etc. 
+
+#!/bin/bash
+# Use this for your user data (script from top to bottom)
+# Install httpd (Linux 2 version)
+Yum update -y
+Yum install -y httpd
+Systemctl start httpd
+Systemctl enable httpd
+Echo “<h1> Hello World from $(hostname-f)</h1>”> /var/www/html/index.html
+
+This creates a web server on every EC2 instance created as part of this ASG.
+Now choose instance type requirements and yes this lets you override the launch template and very advanced specificities. 
+For AZ choose “Balanced best effort.”
+Can integrate with other services - optional → Attach to an existing load balancer. → Choose from your load balancer target groups → select target groups. → Turn on Elastic Load Balancing health checks. → Decide min x max capacity → Decide if you want a target tracking policy → Decide which policy → Create ASG.
+
+This now creates 1 EC2 for me when I click ‘details’ i see → When ASG creates an EC2 i can click ‘Activity‘ to view the history, when I go instance management  it shows instance ID’s created → Then click Instance to see its running but because our ASG and instances are linked we can go to target groups on left hand side and select it and find that in targets tab that our EC2 is a registered target in our ASG. → Check this by going on website and refreshing the page. → if the instance becomes unhealthy it’ll be terminated and a new one will be made.
