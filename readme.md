@@ -280,3 +280,10 @@ For AZ choose “Balanced best effort.”
 Can integrate with other services - optional → Attach to an existing load balancer. → Choose from your load balancer target groups → select target groups. → Turn on Elastic Load Balancing health checks. → Decide min x max capacity → Decide if you want a target tracking policy → Decide which policy → Create ASG.
 
 This now creates 1 EC2 for me when I click ‘details’ i see → When ASG creates an EC2 i can click ‘Activity‘ to view the history, when I go instance management  it shows instance ID’s created → Then click Instance to see its running but because our ASG and instances are linked we can go to target groups on left hand side and select it and find that in targets tab that our EC2 is a registered target in our ASG. → Check this by going on website and refreshing the page. → if the instance becomes unhealthy it’ll be terminated and a new one will be made.
+
+24. Scaling Policies Hands On Lab.
+Create Scheduled action → Desired capacity, min, max. → Recurrence and timezone. → Specific timezone.
+
+Create predictive scaling policy (which is machine driven) → scale based on forecast →  Decide metrics it scales on & target utilization. 
+
+Create Dynamic Scaling policies → create dynamic scaling policy → Choose policy type (Target, Step, Simple scaling) → choose/create cloudwatch alarm) → Decide Take the action e.g Add, 10, Percent of group, add capacity units in increments of at least 2 capacity units, decide wait value.
