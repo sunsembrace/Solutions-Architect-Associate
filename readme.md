@@ -306,3 +306,17 @@ Can then use INSERT statement to input data etc.
 RDS → DB → DB-1 → add reader → DB instance type, Multi-AZ deployment, storage type etc.
 
  → Can view monitoring through rds cloudwatch and can use actions to take snapshots too.
+
+26. Amazon Aurora hands on labs
+RDS → Engine type =  Aurora (MySQL Compatible) & Choose version → Template = Production  → settings = DB cluster identifier, Master username, Master Password → Cluster Storage Configuration = Aurora Standard → Instance Configuration = Burstable & serverless v2 toggle on w/ capacity range of ACUs  or Instance type = db.t3.medium → Availability& Durability = Create an Aurora Replica or Reader node in diff AZ → Connectivity = Dont connect to an EC2 compute resource, network type = IPv4, vpc = default vpc, db subnet group = default vpc, public access toggled on, vpc security group = choose/create, database port = 3306 (MySQL) → Database authentication → Monitoring → Additional Configs
+
+Then click Databases to view it. → Shows in the connectivity & security tab that we have 2 endpoints (Reader & Writer). 
+But if we click on the instances within the DB they will have their own endpoints.
+Actions let us add replica, create cross-Region read replica, add replica auto scaling or even add replica auto scaling.
+
+Replica Auto Scaling policy → policy name → Decide target metric → target value  → Choose cluster capacity details. 
+
+Action also lets us add an AWS Region but only if it was made globally initially
+
+To delete.
+Delete reader instance then writer instance then you can delete the entire cluster.
