@@ -287,3 +287,22 @@ Create Scheduled action → Desired capacity, min, max. → Recurrence and timez
 Create predictive scaling policy (which is machine driven) → scale based on forecast →  Decide metrics it scales on & target utilization. 
 
 Create Dynamic Scaling policies → create dynamic scaling policy → Choose policy type (Target, Step, Simple scaling) → choose/create cloudwatch alarm) → Decide Take the action e.g Add, 10, Percent of group, add capacity units in increments of at least 2 capacity units, decide wait value.
+
+25. Amazon RDS Hands on Labs
+RDS → Create database → Standard Create → MySQL →  Template = Production, Availability & Durability = Single or Multi AZ → Settings = DB name identifier and master username/ password → Instance configuration = Standard/Memory/Burstable classes & instance type →  Storage & enable storage autoscaling & minimum storage threshold → Connectivity = Connect or dont to an EC2 compute resource, choose VPC, DB Subnet group, public access = yes/no, choose/create security group, AZ preference, DB port → database authentication = password or password and IAM or password and Kerberos → Monitoring = can enable Enhanced monitoring. → Additional configuration = Initial DB name, DB parameter group, enable automated backups and retention period (1-35 days), backup window, log exports ( audit, error, general, slow query), enable deletion protection.
+
+When created you can view tabs and find security group and in inbound rules see the type as MYSQL/Aurora with port 3306 from my IP. If struggling to connect i’ll change it to ipv4 0.0.0.0 to allow from anywhere.
+
+25.2 Connecting to RDS 
+Downloaded SQLectron to connect to our DB 
+Take the DB endpoint 
+Go on SQLectron → Make db name and database type=MySQL, paste endpoint on Server Address and port 3306, enter user and pw, initial db → Then click Test and it should do a connection test successful. → If it doesn’t work check if your DB was set to be a public one or security group to allow your IP address.
+
+Can now enter raw sql commands such as CREATE TABLE mytable (name VARCHAR(20), first_name VARCHAR(29));
+
+Can then use INSERT statement to input data etc.
+
+25.3 Create Read Replica
+RDS → DB → DB-1 → add reader → DB instance type, Multi-AZ deployment, storage type etc.
+
+ → Can view monitoring through rds cloudwatch and can use actions to take snapshots too.
