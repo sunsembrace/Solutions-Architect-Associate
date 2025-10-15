@@ -341,3 +341,22 @@ Installs both these commands.
 Then do nslookup <website url> and it should display info including the ip value you made earlier.
 
 Dig <website url> and it should display similar info but more including such as the TTL and the record type e.g A.
+
+29. Route 53, ec2 set up, alb - Hands on Labs
+EC2 → launch instance and do config and in userdata specify a bootstrap data script→ 
+
+#!/bin/bash
+Yum update -y
+Yum install -y httpd
+Systemctl start httpd
+Systemctl enable httpd
+EC2_AVAIL_ZONE=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone)
+Echo “<h1>Hello World from $(hostname -f) in AZ $EC2_AVAIL_ZONE </h1?” > /var/www/html/index.html
+
+Then launch instance.
+Then change region in top right account and launch the 2nd instance and same instruction.
+Then repeat for 3rd instance also in a diff region.
+
+Then create an ALB → Choose 3 subnets and choose a sg → create new target group based on the instances and register those instances you may → then create target group then create ALB.
+
+Now go on each ipv4 address on each instance and paste on browser and it should work!
