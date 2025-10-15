@@ -360,3 +360,10 @@ Then repeat for 3rd instance also in a diff region.
 Then create an ALB → Choose 3 subnets and choose a sg → create new target group based on the instances and register those instances you may → then create target group then create ALB.
 
 Now go on each ipv4 address on each instance and paste on browser and it should work!
+
+30. Route 53 TTL Demo.
+Route 53 - TTL Hands on Lab.
+Create record - paste value from one of your ec2 instances, set TTL.
+Go on domain websites should work. Then instantly edit and change record value to the other instance (diff Ip)
+If you then go into the cloud shell and do a dig command, then it’ll show how long left it’ll be cached.
+After the TTL expires the browser will then ask route 53 the value of the domain and may be redirected to the new IP. 
