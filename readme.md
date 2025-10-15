@@ -325,3 +325,19 @@ Delete reader instance then writer instance then you can delete the entire clust
 Amazon ElasatiCache → Get started → Redis/Memcached → Configuration: Serverless / Design your own cache and Creation method: New cache (Easy, cluster) or Restore from backup. → Configuration= production/Dev/Test/Demo → Cluster info → Location= AWS / On premises, multi-AZ Enable → Cluster settings= port/parameter groups/Node/Number of Replicas  → VPC ID & selected Subnets → Advanced settings (enable encryption at rest or in transit) → Access control and selected security groups. → Create.
 
 Go to actions to delete!
+
+28. Route 53 Hands on Labs.
+Route 53 → Register domain → Choose unique domain name → decide duration / auto-renew, → Enter contact info → enable privacy protection → Submit to register and pay for domain.
+
+Should have 2 records the SQA and the NS record → This one is for route 53.
+
+Creating our first records.
+Create record → record name and record type → Decide value, TTL, routing policy → Create.
+Now command lines as pasting website url wont do anything because theres no servers hosting it i believe.
+
+Go to AWS Cloudshell → nslookup , dig 
+if those commands dont work or exist Do →  sudo yum install -y -bind-utils
+Installs both these commands.
+Then do nslookup <website url> and it should display info including the ip value you made earlier.
+
+Dig <website url> and it should display similar info but more including such as the TTL and the record type e.g A.
