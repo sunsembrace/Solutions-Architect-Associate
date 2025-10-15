@@ -320,3 +320,8 @@ Action also lets us add an AWS Region but only if it was made globally initially
 
 To delete.
 Delete reader instance then writer instance then you can delete the entire cluster.
+
+27. ElastiCache hands on.
+Amazon ElasatiCache → Get started → Redis/Memcached → Configuration: Serverless / Design your own cache and Creation method: New cache (Easy, cluster) or Restore from backup. → Configuration= production/Dev/Test/Demo → Cluster info → Location= AWS / On premises, multi-AZ Enable → Cluster settings= port/parameter groups/Node/Number of Replicas  → VPC ID & selected Subnets → Advanced settings (enable encryption at rest or in transit) → Access control and selected security groups. → Create.
+
+Go to actions to delete!
