@@ -394,3 +394,10 @@ Create record 3 → Record name → Record type A → Value: ip3 → TTL → Rou
 
 We can then go to our website url with prefix of weighted.url
 Use dig to see ip, ttl, and weight to see how it redirects most of the queries into a specific IP.
+
+34. Latency-based Hands on Labs.
+Create record 1 → Record name → Record type A → Value: ip1 → TTL → Routing policy: Latency→ → health check optional  → Record ID name
+
+Create record 2 → Record name → Record type A → Value: ip2 → TTL → Routing policy: Latency→ → health check optional  → Record ID name
+
+Create record 3 → Record name → Record type A → Value: ip3 → TTL → Routing policy: Latency→ → health check optional  → Record ID name
