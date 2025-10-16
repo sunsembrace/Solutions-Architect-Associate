@@ -367,3 +367,14 @@ Create record - paste value from one of your ec2 instances, set TTL.
 Go on domain websites should work. Then instantly edit and change record value to the other instance (diff Ip)
 If you then go into the cloud shell and do a dig command, then it’ll show how long left it’ll be cached.
 After the TTL expires the browser will then ask route 53 the value of the domain and may be redirected to the new IP. 
+
+31. Route 53 - Records accessing alb through hostname record - Hands on labs
+Route 53  pick domain → Create record → in value paste hostname of ALB so we can access it through your Domain website rather than by the ALB link →  paste domain url in web browser and it should display what your ALB displays when its url is pasted in browser.
+This works but isnt AWS native
+
+So now we create an alias record → create record → Type A as our ALB only handles IPv4 traffic → route traffic to alias to application and classic load balancer → choose region and the LB → Create record.
+
+How to do it for just the domain apex?
+Create record → Record type is CNAME → points to value of domain name of our ALB → wont work as CNAME doesnt work for apex.
+
+So we do it for an alias record and change record type to A for IPV4 like above which will make the domain apex accessible. 
