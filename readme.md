@@ -384,3 +384,13 @@ So we do it for an alias record and change record type to A for IPV4 like above 
 Route 53 → Create record → Type: A IPv4 → value an IP from an instance → TTL 20 seconds → Routing policy: Simple routing → Create → go test url and work. 
 
 → Open cloudshell and use dig <url> to see the TTLand can then go back to edit record and add another/multiple IP from another instance → so when TTL expires we can use dig again and see how the IP has changed and how its client side choice. 
+
+33. Weighted routing - hands on labs.
+Create record 1 → Record name → Record type A → Value: ip1 → TTL → Routing policy: Weighted → Weight e.g 10 → health check optional  → Record ID name
+
+Create record 2 → Record name → Record type A → Value: ip2 → TTL → Routing policy: Weighted → Weight e.g 70 → health check optional  → Record ID name
+
+Create record 3 → Record name → Record type A → Value: ip3 → TTL → Routing policy: Weighted → Weight e.g 20 → health check optional  → Record ID name
+
+We can then go to our website url with prefix of weighted.url
+Use dig to see ip, ttl, and weight to see how it redirects most of the queries into a specific IP.
