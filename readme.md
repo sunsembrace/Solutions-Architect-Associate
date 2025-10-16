@@ -401,3 +401,17 @@ Create record 1 → Record name → Record type A → Value: ip1 → TTL → Rou
 Create record 2 → Record name → Record type A → Value: ip2 → TTL → Routing policy: Latency→ → health check optional  → Record ID name
 
 Create record 3 → Record name → Record type A → Value: ip3 → TTL → Routing policy: Latency→ → health check optional  → Record ID name
+
+35. Health Checks - Hands on Labs
+Route 53 → Health Checks → Create health check → what to monitor → specify endpoint by IP address or domain name → protocol, IP/host name/port/path → Advanced config e.g failure threshold, string matching, etc → toggle on or off for cloudwatch alarm to notify if health check fails.  → Create Health check.
+(do this for your 3 diff IPs)
+
+Now go to ec2 → Tamper with SG of the ec2 ip for the health check such as failing port e.g deleting the inbound rule → go back to health checkers and it’ll show it was unhealthy.
+
+Calculated health check
+Can then create Calculated health check → create health check → what to monitor = status of other health checks → specify which health checks to monitor → Report healthy when ‘x’ number of 3 selected health checks are healthy or all or one or more → Create health check
+
+Calculated health check shows unhealthy because one healthcheck is unhealthy!
+
+Cloudwatch alarm healthcheck (assuming you made one)
+Create health check → What to monitor = state of Cloudwatch alarm → Monitor cloudwatch configs in region etc → create 
