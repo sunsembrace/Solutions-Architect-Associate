@@ -378,3 +378,9 @@ How to do it for just the domain apex?
 Create record → Record type is CNAME → points to value of domain name of our ALB → wont work as CNAME doesnt work for apex.
 
 So we do it for an alias record and change record type to A for IPV4 like above which will make the domain apex accessible. 
+
+32. Route 53- Simple routing hands on labs.
+
+Route 53 → Create record → Type: A IPv4 → value an IP from an instance → TTL 20 seconds → Routing policy: Simple routing → Create → go test url and work. 
+
+→ Open cloudshell and use dig <url> to see the TTLand can then go back to edit record and add another/multiple IP from another instance → so when TTL expires we can use dig again and see how the IP has changed and how its client side choice. 
