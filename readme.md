@@ -415,3 +415,15 @@ Calculated health check shows unhealthy because one healthcheck is unhealthy!
 
 Cloudwatch alarm healthcheck (assuming you made one)
 Create health check → What to monitor = state of Cloudwatch alarm → Monitor cloudwatch configs in region etc → create 
+
+
+36. Routing Policies - Failover (Active-Passive)
+Route 53 mandatory health check for 1st ec2 if unhealthy it uses record of the 2nd.
+Can only be one primary and one secondary 
+
+Creating a fail over hands on labs 
+Create a record → record type A ipv4 → Value of ec2 → TTL→ routing policy=Failover → Failover record type ==Primary → Record ID
+
+Create record 2 → Record type A ipv4 → value of different ec2 → TTL → Routing policy=Failover → Failover record type=secondary → Create record
+
+Now if you got to their IP both sites work so go to region of one of the ec2’s and make it unhealthy e.g remove security group inbound http rule and wait for it to be unhealthy then go on url and it should show its connected to a diff ec2 demonstrating the failover did work
