@@ -427,3 +427,13 @@ Create a record → record type A ipv4 → Value of ec2 → TTL→ routing polic
 Create record 2 → Record type A ipv4 → value of different ec2 → TTL → Routing policy=Failover → Failover record type=secondary → Create record
 
 Now if you got to their IP both sites work so go to region of one of the ec2’s and make it unhealthy e.g remove security group inbound http rule and wait for it to be unhealthy then go on url and it should show its connected to a diff ec2 demonstrating the failover did work
+
+37. 
+Geolocation hands on labs.
+Create a record → record type A ipv4 → Value of ec2 → TTL→ routing policy=geolocation → Location e.g = Asia
+
+Add another record 2, Create a record → record type A ipv4 → Value of different ec2 → TTL→ routing policy=geolocation → Location = e.g = US 
+
+Add another record 3 (anything that doesn't match our two locations above goes to default) → Create a record → record type A ipv4 → Value of different ec2 → TTL→ routing policy=geolocation → Location = default
+
+To test  use vpn changing your IP to ensure URL loads you to the desired ec2. 
