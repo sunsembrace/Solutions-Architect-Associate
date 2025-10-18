@@ -437,3 +437,14 @@ Add another record 2, Create a record → record type A ipv4 → Value of differ
 Add another record 3 (anything that doesn't match our two locations above goes to default) → Create a record → record type A ipv4 → Value of different ec2 → TTL→ routing policy=geolocation → Location = default
 
 To test  use vpn changing your IP to ensure URL loads you to the desired ec2. 
+
+38. Multi-value health checks hand on labs.
+Create record → Record Type A IPv4 → Value of ec2 → TTL 300s → Routing policy = simple routing= Multivalue answer →  health check (optional) = us-east-1
+
+Create 2nd record → Record Type A IPv4 → Value of different ec2 → TTL 300s → Routing policy = simple routing= Multivalue answer →  health check (optional) = ap-southeast-1
+
+Create 3rd record → Record Type A IPv4 → Value of different ec2 → TTL 300s → Routing policy = simple routing= Multivalue answer →  health check (optional) = eu-central-1
+
+Go to cloudshell and use dig url and it’ll display all 3 ec2 instances because they are healthy.
+
+Now make one unhealthy by selecting an ec2 and edit health check and ticking the invert health status box → Run dig again on cloudshell and it should display only 2 ec2’s now as one is unhealthy. → Untick box after your test in edit health checks to finish testing. 
