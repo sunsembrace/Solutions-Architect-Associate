@@ -464,3 +464,18 @@ Now when everything is launched → We get a domain name → Paste onto a web br
 Upload and deploy → Can upload a new application and automatically gets deployed to our ec2 instances.
 Health → Shows us health checks and can click Logs, monitoring to be view centric on our applications. 
 Application:Myapplication → Can create a new environment. 
+
+40. Amazon S3 Hands on Lab
+S3 → Create bucket → Choose region in account settings top right before hand as it’ll be autoselected in this → Bucket type = General purpose → Bucket name (must be unique globally), copy settings from existing bucket - optional. → Object ownership = ACLs disabled(reccomended) → Block public access settings e.g Block all public access → Bucket versioning = Disable → Tags → Default encryption = Server-side encryption with amazon s3 → Create bucket.
+
+Can view after all general purpose buckets in all regions.
+Select your bucket via name search → Upload → Select file → Destination is also given of the bucket. → Close and can see in our s3 bucket that the file is there, can click it for more details of said file properties with an object URL to view it.
+
+Click Open and it’ll display the image.
+But if I click the Object URL and paste it in the browser, I get denied access and can't view it using the public URL.
+The difference is that the beginning is the same but then becomes complicated and long → Why? Because this is a s3 pre-signed URL as it contains a signature to ensure its me who’s making the request and contains my credentials hence why the first link displays it and the second public doesn't.
+
+In buckets we can also create a folder → Create folder → folder name → Server-side encryption → Create folder.
+
+Can now click folder and upload images within it. Via same upload method for files as before.
+Can click delete and type permanently delete to delete it.
