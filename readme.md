@@ -448,3 +448,19 @@ Create 3rd record → Record Type A IPv4 → Value of different ec2 → TTL 300s
 Go to cloudshell and use dig url and it’ll display all 3 ec2 instances because they are healthy.
 
 Now make one unhealthy by selecting an ec2 and edit health check and ticking the invert health status box → Run dig again on cloudshell and it should display only 2 ec2’s now as one is unhealthy. → Untick box after your test in edit health checks to finish testing. 
+
+39. Elastic Beanstalk Hands on Labs.
+
+Elastic Beanstalk → Create application → Environment tier = e.gWeb server environment → application name →: environment info = env name, domain (this url is how we access the web servers) , env desc,  → Platform = Managed platform, Platform = e.g Node.js, Platform branch, platform version → Application code = sample application, → Presets = Single instance (free tier eligible), → Service access (IAM roles that allow beanstalk to do what it does), service role = create and use a new service role, service role name, choose EC2 keypair, EC2 instance profile. → Go to IAM Console and follow instructions below then refresh and return here →  Can now view and We Skip to review but could’ve configured networking,database or instance traffic and scaling etc. 
+
+Go into IAM console → create a role for AWS service for EC2 → In permissions policy type in Beanstalk, add AWSElasticBeanstalkWebTier, AWSElasticBeanstalkWorkerTier, AWSElasticBeanstalkMulticontainerDocker → This is enough to get started. → Click Next → create role. 
+
+Now events are happening and these come from CloudFormation → Click events to see things are being created, in progress, or create_complete. 
+Resources → Shows what it's created and can click the template to go to the application composer which visually shows us the architecture and what it's created for us behind the scenes.
+
+Events → Shows us sg created or an elastic ip created etc. We can then go to ec2 instances to view specifics of the things created such as the type and so on.
+
+Now when everything is launched → We get a domain name → Paste onto a web browser and it’ll work and show its being run on Elastic Beanstalk.
+Upload and deploy → Can upload a new application and automatically gets deployed to our ec2 instances.
+Health → Shows us health checks and can click Logs, monitoring to be view centric on our applications. 
+Application:Myapplication → Can create a new environment. 
