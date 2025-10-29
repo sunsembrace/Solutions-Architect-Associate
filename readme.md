@@ -555,3 +555,15 @@ Delete expired object delete markers or incomplete multipart uploads.
 Can change storage class transitions, day after object creation and as many times as we want. 
 Can also set up permanent expirations too. 
 Create rule. 
+
+48. S3 event notification hands on labs.
+
+Two ways to do it in S3 service. 
+Create event notification or involve Amazon EventBridge. (edit and set On).
+
+ Create event name, Event Types. Object removals, etc. → Then choose destination e.g specify SQS name. → In new browser tab, Go to SQS service → create queue → Name it. And create → Go to Access Policy tab we wanna edit to allow our S3 to talk to our SQS queue.  —> Click policy generator and for action do send message → Then paste this policy in. → Now go back to s3 and add the SQS name to S3 destination and it should work. 
+
+Now to test it works. Upload a file to S3 bucket works.
+Now say we want the image to become a thumbnail so we go to SQS and click Send and receive messages → and click poll messages and it creates a message from the s3 showing connectivity with the Key showing which image created an event 
+
+Create event notification or involve Amazon EventBridge. (edit and set On).
