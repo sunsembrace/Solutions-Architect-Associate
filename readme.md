@@ -490,4 +490,6 @@ ARN - bucket name with / and * e.g  (can copy the arn from the edit bucket polic
 
 Generate policy --> Copy and paste it back on the edit bucket policy page.
 
-42. 
+42. S3 Website Static hosting hands on
+Go to your bucket → Upload a file like an image.jpeg into it → Go to properties of bucket → Scroll down and edit static website hosting and click enable → Host a static website, index doc e.g index.html (will have to upload this file later), error doc, redirection rules → and save changes → Go back to the bucket and upload the missing index.html file → Upload and add the file.
+Back to properties → Static website hosting will give us an endpoint URL and paste it into browser and it should work. → If we right click the image and open in new tab we get the public URL of our image.jpeg.
