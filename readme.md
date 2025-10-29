@@ -534,3 +534,11 @@ Now go to management → Edit rule → Delete Marker Replications are not replic
 E.g if i delete my coffee.jpeg file, it’ll create a delete marker as its versioned. Now in the replica bucket we’ll also see the delete marker replicated. 
 
 If you decide to delete a specific version ID and a permanent delete then it will not be replicated in our replica bucket as only delete markers are replicated not deletes. 
+
+46. S3 storage classes - hands on. 
+Create a bucket e.g named S3-storage-classes-demos → Add files and add any file.
+Look at properties of this object and under storage class → Pick a class. → Upload.
+Now the object will show what its storage class is and you can always edit it.
+
+We can automate moving objects between storage tiers/classes with lifecycle rules
+Lifecycle rule configuration → Apply to all objects in this bucket → Move current version of object between storage classes → Decide which storage after how many days etc. 
