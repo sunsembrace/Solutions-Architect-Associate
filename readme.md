@@ -542,3 +542,16 @@ Now the object will show what its storage class is and you can always edit it.
 
 We can automate moving objects between storage tiers/classes with lifecycle rules
 Lifecycle rule configuration → Apply to all objects in this bucket → Move current version of object between storage classes → Decide which storage after how many days etc. 
+
+47. S3 lifecycle rules - hands on labs.
+Create lifecycle rule 
+Life cycle rule actions (5 exist)
+Move current versions of object between storage classes.
+Move noncurrent versions of objects between storage classes.
+Expire current versions of objects between storage classes.
+Permanently delete noncurrent versions of objects.
+Delete expired object delete markers or incomplete multipart uploads.
+
+Can change storage class transitions, day after object creation and as many times as we want. 
+Can also set up permanent expirations too. 
+Create rule. 
