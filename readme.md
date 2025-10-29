@@ -479,3 +479,15 @@ In buckets we can also create a folder → Create folder → folder name → Ser
 
 Can now click folder and upload images within it. Via same upload method for files as before.
 Can click delete and type permanently delete to delete it.
+
+41. S3 Hands on Labs - Creating s3 bucket policy.
+Create bucket --> Untick block all public access --> Only do this if we want it to be publicly accessed --> Confirm --> Permissions overview tab go to Bucket policy --> Now create one --> Look at bucket policy example --> But we use AWS policy generator.
+Effect - Allow
+Principal - * (for all)
+AWS Service - S3
+Actions = Get objects
+ARN - bucket name with / and * e.g  (can copy the arn from the edit bucket policy page).
+
+Generate policy --> Copy and paste it back on the edit bucket policy page.
+
+42. 
