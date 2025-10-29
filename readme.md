@@ -493,3 +493,44 @@ Generate policy --> Copy and paste it back on the edit bucket policy page.
 42. S3 Website Static hosting hands on
 Go to your bucket → Upload a file like an image.jpeg into it → Go to properties of bucket → Scroll down and edit static website hosting and click enable → Host a static website, index doc e.g index.html (will have to upload this file later), error doc, redirection rules → and save changes → Go back to the bucket and upload the missing index.html file → Upload and add the file.
 Back to properties → Static website hosting will give us an endpoint URL and paste it into browser and it should work. → If we right click the image and open in new tab we get the public URL of our image.jpeg.
+
+43. S3 Versioning hands on labs.
+Go to bucket → Properties → Bucket versioning → edit → Enable → Save changes → Objects → get object url from before into browser → Say we wanna update website → Click index.html file and edit the line to idk “I Really love coffee” & Save it → now go click  Upload file → index.html (Has updated content now) → So it overwrites the previous one and if you refresh the page of the website on browser you’ll see the website update.
+
+But to see what happened in the back click show versions toggle → It will show Version ID null for files uploading before we toggled on versioning → But files like index.html will show two versions. 1st  version ID for the file uploaded before for null and 2nd will have a version ID → This allows us to roll back changes.
+
+So we click on the specific ID and we delete a specific version ID → a permanent delete → Delete objects and the website will revert to a previous version.
+
+So what happens if we hide versioning 
+
+44. S3 Versioning hands on labs.
+Go to bucket → Properties → Bucket versioning → edit → Enable → Save changes → Objects → get object url from before into browser → Say we wanna update website → Click index.html file and edit the line to idk “I Really love coffee” & Save it → now go click  Upload file → index.html (Has updated content now) → So it overwrites the previous one and if you refresh the page of the website on browser you’ll see the website update.
+
+But to see what happened in the back click show versions toggle → It will show Version ID null for files uploading before we toggled on versioning → But files like index.html will show two versions. 1st  version ID for the file uploaded before for null and 2nd will have a version ID → This allows us to roll back changes.
+
+So we click on the specific ID and we delete a specific version ID → a permanent delete → Delete objects and the website will revert to a previous version.
+
+So what happens if we disable show versions and delete a coffee.jpeg → In this case we are not deleting a version underlying ID but by adding a delete marker (Doesn’t actually delete the underlying object) → Now within our bucket visibly it looks like its been deleted but if we click show versions we’ll see the image with type Delete Marker and with a Version ID.
+
+Now if we refresh the page the coffee image is gone → If we right click image to open in new tab we get an error 404 image not found → So to get it back we can click the delete marker and delete the delete marker which restores the previous object. (coffee jpeg).
+
+45. S3 Replication hands on labs.
+S3 replication Hands on labs. 
+Create a bucket as your origin → Set in AWS region → Enable versioning (replication only works if versioning is on). 
+Create a 2nd bucket as your target bucket → Can set in same or different region to → Enable bucket versioning. 
+
+Add file in bucket origin. → Click management → Create replication rule → Status= Enabled, Rule scope = Apply to all objects in the bucket
+Destination = Choose a bucket in this account.  (The 2nd target bucket we made).
+ IAM Role = Create a new role
+Save
+New prompt shows up so it’ll only replicate from the moment we enable it, so we could use a one time batch operation to replicate existing objects that weren’t replicated (this is separate from the replication feature itself) but we click No.
+
+Now if we refresh the replica bucket we'll see the object from the original bucket hasn't been replicated.
+Now due to the replication rule added after the object, anything uploaded will be replicated from this point forward. 
+
+Upload a new file in origin and then refresh target bucket after a few seconds we’ll see it was replicated and see version ID as the exact same as origin bucket 
+
+Now go to management → Edit rule → Delete Marker Replications are not replicated but we can enable this feature so it replicates delete markers from one bucket to another.
+E.g if i delete my coffee.jpeg file, it’ll create a delete marker as its versioned. Now in the replica bucket we’ll also see the delete marker replicated. 
+
+If you decide to delete a specific version ID and a permanent delete then it will not be replicated in our replica bucket as only delete markers are replicated not deletes. 
