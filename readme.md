@@ -581,3 +581,69 @@ SSE-C is missing as it can only be done from CLI not console.
 Client side is done outside of AWS.
 So only ones you can do in console are SSE-S3, SSE-KMS, DSSE-KMS.
 
+50. S3 CORS Hands on Labs.
+<html>
+	<head>
+		<title>My first Webpage</title?
+	</head/>
+	<body>
+		<h1> I love coffee</h1>
+		<p>Hello world!</p>
+	</body>
+	
+	<img src=”coffee.jpg” width=500/>
+
+# Cors demo #
+<div id=”tofetch”/>
+<script>
+Var tofetch = document.getElementById(“tofetch”);
+
+fetch(‘extra-page.html’)
+.then((response) => {
+		Return response.text();
+})
+	.then((html) => {
+		tofetch.innerHTML = html
+	})
+</script>
+</html>
+
+In a bucket, upload coffee.jpeg and extra-page.html file.
+Go to properties, click end-points, go to link and and it’ll show the fetch request worked with the new line added from extra-page.html from within the same origin  because both files are within the same bucket. 
+
+Now to demonstrate CORS.
+Create bucket → demo-cors-sunsembrace - any AZ → create bucket.
+Under properties → scroll down and enable static website hosting → index document= index.html
+Bucket policy (just copy one from prev bucket for simplicity) save.
+
+Now upload extra.html in the new bucket and click endpoint link and it should work.
+Now we can remove extra-page.html in origin bucket as we dont need it anymore as its in another bucket.
+Now change the index.html file to point instead to the extra page in my other origin.
+So first go back to original page and refresh and it’ll show 404 not found.
+ Go to other bucket properties, find the public URL and open it on browser and use that entire URL as it works and change our index.html script by changing the fetch within CORS demo the full path of the new URL.  This will trigger a cross-origin resource share (CORS).
+Then reupload the edited index.html file in the origin bucket to override previous one.
+Check initial endpoint link and refresh page. 404 error is gone but its not displaying the extra page line but in our debugging console tool it shows cors was blocked.
+This is because the other bucket was not set up for CORS hence why it got blocked.
+SO on our 2nd bucket go back to properties go under permissions and edit it and add correct CORS settings in form of json.
+{
+	{“AllowedHeaders”: [
+		“Authorization”
+	],
+	“AllowedMethods”: [
+		“GET”
+	],
+	“AllowedOrigins”: [
+		“<url of first bucket with http://… without slash at the end>”
+	],
+	“ExposeHeaders”: [],
+	“MaxAgeSeconds”: 3000
+	}
+]
+
+Paste this in.
+
+Go to the first webpage, copy it and paste it into the JSON config above.
+Save changes.
+Now we’re telling the 2nd bucket that its okay to make requests from the origin.
+Refresh page and the extra part should be working.
+Then go into console debugging that we had before and in the networking tab it'll show the request made with the GET command and with the origin bucket link.
