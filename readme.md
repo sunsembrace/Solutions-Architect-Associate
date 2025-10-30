@@ -567,3 +567,17 @@ Now to test it works. Upload a file to S3 bucket works.
 Now say we want the image to become a thumbnail so we go to SQS and click Send and receive messages → and click poll messages and it creates a message from the s3 showing connectivity with the Key showing which image created an event 
 
 Create event notification or involve Amazon EventBridge. (edit and set On).
+
+49. S3 encryption Hands on Lab.
+Create bucket → Keep bucket versioning on → Default encryption shows 3 diff encryption types → choose SSE-S3 → Create bucket → upload object and click object uploaded, scroll down to Server-Side encryption settings → Will show it as done and you can edit it. → However, this will create a new version of the object with updated settings hence why we enabled versioning earlier.
+
+Edit → Override bucket settings for default encryption → Dual-layer server-side encryption with Server-side encryption with AWS Key Management Service keys (SSE-KMS) → Choose or enter AWS key (default one which is free) but creating your own KMS key costs money. → Save changes.
+
+Click versioning and you’ll see two versions. → Scroll down to Server-side encryption settings which will display encryption type and the encryption key ARN.
+
+Do same process of creating a bucket but then edit it after to SSE-KMS then enable bucket key so it has less api calls and is therefore cheaper.
+
+SSE-C is missing as it can only be done from CLI not console. 
+Client side is done outside of AWS.
+So only ones you can do in console are SSE-S3, SSE-KMS, DSSE-KMS.
+
