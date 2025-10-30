@@ -606,7 +606,7 @@ fetch(‘extra-page.html’)
 		tofetch.innerHTML = html
 	})
 </script>
-</html>
+</html>gh
 
 In a bucket, upload coffee.jpeg and extra-page.html file.
 Go to properties, click end-points, go to link and and it’ll show the fetch request worked with the new line added from extra-page.html from within the same origin  because both files are within the same bucket. 
