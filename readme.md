@@ -625,7 +625,8 @@ Then reupload the edited index.html file in the origin bucket to override previo
 Check initial endpoint link and refresh page. 404 error is gone but its not displaying the extra page line but in our debugging console tool it shows cors was blocked.
 This is because the other bucket was not set up for CORS hence why it got blocked.
 SO on our 2nd bucket go back to properties go under permissions and edit it and add correct CORS settings in form of json.
-{
+
+[
 	{“AllowedHeaders”: [
 		“Authorization”
 	],
