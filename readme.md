@@ -687,3 +687,13 @@ Check permissions of this bucket and check the bucket policy and you’ll see th
 
 Logs take awhile to show but if you click the files it shows the api call made, who and when etc. 
 
+53. S3 pre signed URL hands on labs
+Use a private bucket, click its URL and you’ll get an error access denied message.
+But if i click Open then the image will show e.g coffee.jpeg
+Why? Because the beginning is the same but the end is different which is called a pre-signed URL.
+
+So how do we generate a pre-signed URL for everyone?
+
+Using CLI / object actions → Click share with a presigned URL → Then decide time interval until the presigned URL expires → Create presigned URL 
+
+Now you can share the contents of a bucket with a url with anyone and have it expire for security purposes.
