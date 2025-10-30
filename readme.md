@@ -678,3 +678,12 @@ To test upload an image, then delete and it should add a delete marker because i
 Go back to console, refresh, Now it should let you delete the delete marker as mfa is disabled. 
 
 Then finally at the end of this lab, delete root access key. 
+
+52. S3 Access logs hands on.
+Create bucket → enable versioning → Create → Go to properties → Edit server access logging → Enable → Bucket policy gets updated as a result → Now decide target destination (which bucket you want e.g access log bucket) → Destination region, Destination bucket name, destination prefix →  Pick Log object key format → Save changes
+
+Now go to your other bucket (not the target destination one) upload file etc and this generates activity which gets logged into the access log bucket. 
+Check permissions of this bucket and check the bucket policy and you’ll see that it made a change to allow the service of logging.s3.amazonaws.com to allow all of this to occur. 
+
+Logs take awhile to show but if you click the files it shows the api call made, who and when etc. 
+
