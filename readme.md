@@ -648,3 +648,33 @@ Save changes.
 Now we’re telling the 2nd bucket that its okay to make requests from the origin.
 Refresh page and the extra part should be working.
 Then go into console debugging that we had before and in the networking tab it'll show the request made with the GET command and with the origin bucket link.
+
+51. S3 MFA Delete hands on labs.
+Create bucket → Enable bucket versioning → Go to properties → Click edit on bucket versioning → MFA shows disabled → To enable it we have to use CLI → Using root account click top right and click your security credentials → Create new access key → 
+
+On cli
+#generate root access keys 
+Aws configure – profile root-mfa-delete-demo
+
+Then 
+(enter access key)
+(enter secret key)
+(enter region)
+Aws s3 ls –profile root-mfa-delete-demo
+
+#enable mfa delete
+Aws s3api put-bucket-versioning –bucket mfa-demo-stephane –versioning-configuration Status=Enabled, MFADelete=Enabled –mfa “arn-of-mfa-device mfa-code –profille root-mfa-delete-demo
+
+#disable mfa delete 
+Aws s3api put-bucket-versioning –bucket mfa-demo-stephane –versioning-configuration Status=Enabled,MFADelete=Disabled –mfa “arn-of-mfa-device mfa-code” –profile root-mfa-delete-demo
+
+#delete the root credentials in the IAM console.
+
+Now go back to the bucket in the console, refresh and it should say mfa is enabled in the bucket versioning properties tab.
+
+To test upload an image, then delete and it should add a delete marker because it has versioning and then attempt to permanent delete on console but it wont let you as mfa delete is enabled so you have to go through cli to do this.
+(just change permissions from mfa delete command to disabled over the enabled.)
+
+Go back to console, refresh, Now it should let you delete the delete marker as mfa is disabled. 
+
+Then finally at the end of this lab, delete root access key. 
