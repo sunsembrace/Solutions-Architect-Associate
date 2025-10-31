@@ -756,3 +756,8 @@ Amazon FSx → Create file system → Pick Windows file Server → uses Server M
 Amazon FSx → Create file system → pick ONTAP→ Remember its compatible with linux, windows, MacOS → Next → Creation method= Quick create or Standard create → Quick configuration = file system name, deployment type = Single or Multi-AZ, SSD Storage capacity, VPC, Storage efficiency = enabled/disabled→ 
 
 Amazon FSx → Create file system → pick OpenZFS → Also compatible with windows, linux, macOS → same simple config.
+
+59. Storage Gateway Hands on Labs.
+Storage gateway → Create gateway → Gateway timezone → Gateway options, gateway type = Amazon S3 File Gateway → Platform options Host platform → Platform options → Create
+For storage gatewayOptions like VMware over Amazon EC2 allow us to set up the storage gateway directly on premise so the amazon s3 data is closer.
+Volume Gateway is for cached or stored volume.
