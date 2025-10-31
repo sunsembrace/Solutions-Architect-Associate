@@ -697,3 +697,13 @@ So how do we generate a pre-signed URL for everyone?
 Using CLI / object actions → Click share with a presigned URL → Then decide time interval until the presigned URL expires → Create presigned URL 
 
 Now you can share the contents of a bucket with a url with anyone and have it expire for security purposes.
+
+54. CloudFront hands on labs.
+Create s3 bucket → name=DemoCloudFrontBucket → Upload files into it.
+(Using object URL won't open it because its not public, but clicking open will as it gives you a presigned URL)
+
+CloudFront → Create a CloudFront distribution → name= DemoCloudFrontDistribution → Distribution type = Single website app → Origin type=Amazon s3, then choose origin aka S3 bucket made earlier → Enable security (WAF)= Do not enable security protections → Create distribution.
+
+Go view your bucket policy, refresh and you’ll see the JSON has changed permissions to allow interactions from the Service CloudFront.
+
+Now once the cloud Distribution has deployed → Paste distribution domain name into URL and it still wont work unless you specify the path e.g one of the files you uploaded such as /coffee.jpeg → The elements in our s3 bucket are still private but see how loading the image was faster due to the cached version being in CloudFront.
