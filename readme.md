@@ -746,3 +746,13 @@ Then delete instances → Terminate each EC2.
 
 57. AWS Snowball hands on labs. 
 Snow family → Name, choose job type = import from amazon s3 → Next → Compute & Storage, Decide snow devices → Choose your pricing option= On demand, per day pricing, Select Storage type = S3 Data Transfer → Select your S3 buckets → Next → Security, how to encrypt data (KMS key), choose service access type, Shipping address, shipping speed, set notifications=create a new SNS topic → Next → Create.
+
+58. Amazon FSx - Hands on labs.
+Amazon FSx → Create file system → Pick Lustre → Enter file system name, deployment & storage type (SSD or HDD), throughput per unit of storage (pick a number) → Network and security=VPC, securitygroup for VPC, subnet → Encryption = Pick encryption key → Next → Create.
+Note: Remember Lustre has persistent or scratch options.
+
+Amazon FSx → Create file system → Pick Windows file Server → uses Server Message Block (SMB) Protocol. → Next → Name, deployment type = Single or Multi-az, Storage type = SSD/HDD, pick storage capacity →Network and security=VPC, securitygroup for VPC, subnet & standby subnet → Windows authentication = AWS Managed Microsoft Active Directory or Self-managed Microsoft Active Directory →  Encryption = Pick encryption key
+
+Amazon FSx → Create file system → pick ONTAP→ Remember its compatible with linux, windows, MacOS → Next → Creation method= Quick create or Standard create → Quick configuration = file system name, deployment type = Single or Multi-AZ, SSD Storage capacity, VPC, Storage efficiency = enabled/disabled→ 
+
+Amazon FSx → Create file system → pick OpenZFS → Also compatible with windows, linux, macOS → same simple config.
