@@ -707,3 +707,6 @@ CloudFront → Create a CloudFront distribution → name= DemoCloudFrontDistribu
 Go view your bucket policy, refresh and you’ll see the JSON has changed permissions to allow interactions from the Service CloudFront.
 
 Now once the cloud Distribution has deployed → Paste distribution domain name into URL and it still wont work unless you specify the path e.g one of the files you uploaded such as /coffee.jpeg → The elements in our s3 bucket are still private but see how loading the image was faster due to the cached version being in CloudFront.
+
+55. CloudFront Georestriction hands on labs.
+Go to Cloudfront → Security → CloudFront geographic restrictions → Countries-edit → Decide restriction type → Decide countries. → Save changes
