@@ -788,3 +788,16 @@ Repeat but change message body to “Hello world 2” → keep message group ID 
 Do again 3rd and 4th time.
 
 Shows 4 messages available → Click Poll for messages → Expand each message and it’ll show it came in the same order in accordance to FIFO → Can then delete all messages via delete. 
+
+62. SNS Hands on Labs.
+SNS → Create Topic → Next step → Type= FIFO or Standard, name=(must end with .fifo), → Encrypt = enable/disable → Set up Access Policy (defines who and what can write to the SNS topic → Create topic 
+
+Can then scroll down and see subscriptions → Create subscriptions → Options= Kinesis Data Firehose, SQS, Lambda, Email, Email-JSON, HTTP, HTTPS, SMS → we’ll choose email → Topic ARN (pre-made), protocol email, endpoint= Your chosen email address →  Subscription filter policy=Decides what msgs you can filter.
+Then go into email → Then confirm subscription  → Then refresh SNS page and you’ll see an ID within subscription and can click it for more details on the email and filter policy can even 
+
+Can then test and click Publish Message → Enter message body then publish message and should  then check email and see a new email with that message. 
+
+When finished with labs remember to Then delete subscription then delete the SNS Topic.
+
+Exam note: must remember the options= Kinesis Data Firehose, SQS, Lambda, Email, Email-JSON, HTTP, HTTPS, SMS
+
