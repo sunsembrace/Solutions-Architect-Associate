@@ -777,3 +777,14 @@ Purge will delete all messages in the queue great in development but not product
 Monitoring gives info on some metrics to help you decide how to scale it e.g of oldest messages etc.
 
 Can view access policy, encryption and dead letter queue if we set one on tabs.  
+
+61. SQS FIFO Queue hands on Labs.
+SQS → Create queue → Type = FIFO, name (must end with .fifo) → configuration same as before but has content-based duplication (will de-duplicate messages if same one sent within a small 5minute window) →  Access Policy left the same → Encryption left the same → Create
+
+ → Then go to send and receive messages → Add message body “Hello world 1”, message group ID=demo, message duplication ID=1 → Send message
+
+Repeat but change message body to “Hello world 2” → keep message group ID same, message duplication ID=2  → Send message
+
+Do again 3rd and 4th time.
+
+Shows 4 messages available → Click Poll for messages → Expand each message and it’ll show it came in the same order in accordance to FIFO → Can then delete all messages via delete. 
