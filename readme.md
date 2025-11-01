@@ -801,3 +801,32 @@ When finished with labs remember to Then delete subscription then delete the SNS
 
 Exam note: must remember the options= Kinesis Data Firehose, SQS, Lambda, Email, Email-JSON, HTTP, HTTPS, SMS
 
+63.  Amazon Kinesis Hands on Labs
+Kinesis → Select Kinesis data stream → Create data stream →name=DemoStream → Data Stream Capacity = On-demand (pay-per-throughput) or provisioned =  Decide shards or use shard estimator calculator which is ( Maximum number of records written per second & Average record size in & Total number of consumers) → Create data stream.
+
+ Can click Applications to view producers and consumers in tabs or monitoring to see stream metrics and can configure enhanced fan out.
+
+So now we want to write and read from our stream so we use AWS SDK and open up CloudShell.
+
+#get aws cli version
+Aws –version
+
+#producer
+#Replace variables with stream name
+#cli v2
+As kinesis put-record –stream-name test –partition-key user1 –data “user signup” –cli-binary-format raw-in-base64-out
+
+#Cli v1
+Aws kinesis put-record –stream-name test
+–partition-key user1 –data “user signup”
+
+#consumer
+#describe the stream
+Aws Kinesis describe-stream –stream-name test
+
+#consume some data
+Aws kinesis get-shard-iterator –stream-name test
+–shard-is shardId-00000000000
+–shard-iterator-type TRIM_HORIZON
+
+Aws kinesis get-records –shard-iterator <>
