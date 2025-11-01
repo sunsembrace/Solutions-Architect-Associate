@@ -761,3 +761,19 @@ Amazon FSx → Create file system → pick OpenZFS → Also compatible with wind
 Storage gateway → Create gateway → Gateway timezone → Gateway options, gateway type = Amazon S3 File Gateway → Platform options Host platform → Platform options → Create
 For storage gatewayOptions like VMware over Amazon EC2 allow us to set up the storage gateway directly on premise so the amazon s3 data is closer.
 Volume Gateway is for cached or stored volume.
+
+60. SQS Hands on Labs.
+SQS → Create queue → Type=standard or FIFO, name → Configuration, visibility timeout,delivery delay, receive message wait time message retention period, maximum message size → Encryption = enabled/disabled, encryption key time = sse-kms, customer master key=default, data key reuse period =x minutes, → Access policy → Basic/Advanced, define who can send messages to the queue, define who can receive messages to the queue. → Create queue.
+
+
+Click send and receive messages → message body “enter a msg” → Send message / pull for messages.
+Can click receive messages ID for info on when sent, first received size, receive count etc, the body and the attributes. 
+
+Can pull for message again which increases receive count,  can then click the message id and delete it which signals to SNS that we have processed the message. 
+
+Can then send another message multiple times and pull and it’ll display the same number of messages available. 
+
+Purge will delete all messages in the queue great in development but not production.
+Monitoring gives info on some metrics to help you decide how to scale it e.g of oldest messages etc.
+
+Can view access policy, encryption and dead letter queue if we set one on tabs.  
