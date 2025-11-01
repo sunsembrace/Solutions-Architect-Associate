@@ -830,3 +830,21 @@ Aws kinesis get-shard-iterator –stream-name test
 –shard-iterator-type TRIM_HORIZON
 
 Aws kinesis get-records –shard-iterator <>
+
+64. Amazon Data Firehose Hands on Labs
+Amazon Kinesis → Data firehose on left column → Create Data Firehose → (How it works → Ingest, Transform, Load) → Choose source & destination: e.g S3 → Choose the kinesis data stream e.g DemoStream → Delivery stream name auto generated → Transform & convert records (optional), Data transformation = enabled/disabled (if enabled, choose a lambda function)., convert record format = disabled/enabled (if enabled, choose an output format e.g apache parquet or apache qrc). → Destination settings, dynamic partitioning = enabled/disabled → S3 buffer hints, buffer size, buffer interval, compression for data records = disabled/enabled). → Advanced settings → AmazonCloudWatch error logging = disabled/enabled → Permission create or update IAM role KinesisFirehoseServiceRole or choose existing IAM role → Create
+
+
+More data shown in Monitoring tabs, configuration or Destination error logs.
+So now to test it with some data. 
+Go into cloudshell 
+
+#Replace variables with stream name
+#cli v2
+As kinesis put-record –stream-name test –partition-key user1 –data “user signup” –cli-binary-format raw-in-base64-out
+
+Paste this 3 times and Edit data message each time to user sign up, then user login then user logout
+
+3 records sent now check amazon S3 and type in firehose to find bucket and it has 0 objects inside it until the buffer expires then when it loads, keep clicking object ID till you get record ID then click open and use text editor → Will show the data messages e.g user signup, user login, user logout.
+
+To clean up → Delete kinmesis stream, then demostream.
