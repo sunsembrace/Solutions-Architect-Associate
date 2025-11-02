@@ -914,3 +914,16 @@ Can view Logs, activity, metrics, observability, configuration and even link cus
 AppRunner is a powerful all in one service to deploy containers in a production fashion.
 
 Once status shows running → Click domain link and it should work.
+
+70. Lambda Hands on Labs.
+Lambda → Create function →  Blueprint name = Hello world function python 3.10
+HelloWorld → Create a new role with basic Lambda permissions. → Create function.
+
+Click the Test tab → Test → Value1 success. → Shows log and Event JSON can edit to break then  test then fix to cause an error and then success message for logs.
+→> Save event → can test this event as many times as we want. 
+
+Monitor→ View CloudWatch logs →  Log stream 1 → Shows events e.g error and lets you debug directly from CloudWatch logs.
+
+Configurations → Can decide storage and ephemeral storage, existing role → can click Hyperlink “Hello world” which is the role that allows you to access CloudWatch and see Permissions Policies to view/edit policy. → Can click the existing one and see its permission is oriented around CloudWatch Logs.
+
+We can also on the left tab click Triggers and select any source that's available (other AWS services)
