@@ -865,3 +865,26 @@ Can edit this by going to the ASG page / EC2 then ASG service tab service detail
 Then click Instance management within the infra ECS cluster and you’ll see an EC2 created based on desired capacity and we’ll see it within DemoCluster under the Container instances tab. 
 
 This shows when we create an EC2 task it’ll be on one of the capacity providers (Fargate, fargate spot, infra-ECS-Cluster).
+
+66. Creating ECS Service - Hands On.
+Task definitions have to be created before service.
+ECS → task definitions → Create new task definition → name =nginxdemos-hello
+(Comes from an nginxdemons/hello on docker hub) → infrastructure requirements= AWS Fargate,OS=Linux, Task size=.5 vCPU, Memory=1GB, Task role=IAM role to make API requests but can leave for now as not relevant to the labs, TaskExecutionRole.
+
+Container 1 = nginxdemos-hello,imageURL=nginxdemos/hello (this pulls the docker image we referenced earlier from docker hub) ,Essential container=Yes, Container Port= 80, Protocol=TCP, Port name =nginxdemos-hello-80-tcp, app protocol =HTTP. 
+Can also choose other things like CPU and environment variables but we’ll leave as default. → Storage → Default → Create  → Task definition created!
+
+Now to launch the task definition as a cluster.
+ECS → Clusters → DemoCluster → Under services click create → Service details = Task definition family=nginxdemos-hello, task definition revision, service name, compute options= Capacity provider strategy capacity, Capacity provider strategy=Use custom (Advanced), capacity provider = FARGATE, Platform version, latest, Deployment configuration=Replica, Desired tasks= 1, leave everything else default → Network → Create a new security group, type = HTTP, source = anywhere, Public IP toggled on, → Load Balancing = Use load balancing, LB type = Application Load Balancer, Container=  nginxdemos-hello 80:80, ALB=Create a new load balancer, create new listener, port=80, protocol=HTTP, port=80 →  Create → Service has now been deployed successfully. 
+
+Now click the service → Target group name protocol link → Sends us to new page with our Loadbalancer link → Scroll down shows Registered targets and displays one IP address of our container.
+
+Now if we look at the load balancer we can paste its DNS link on our browser and it’ll give us the nginx welcome page which means everything is working. 
+
+Now we can go back to the service and look at Tasks, One container is running and it tells us its configuration → Can view logs, events.
+
+We can even create more  tasks → Click update service → change desired task to e.g 3 → Update.
+
+Now ECS will run two more in addition (total of 3) all on fargate meaning AWS handles the provisioning of the EC2s → If we go back to the nginx url welcome page and keep refreshing, it’ll show the Server Address IP changing showing our Load balancer is distributing traffic between all 3 fargates. 
+
+We can also edit tasks to be 0 so service is still here but containers are still running to save on costs. → Then go to ASG click the ASG for the service and ensure its also set to a 0 desired capacity. → Ensures no EC2 is being run on our ECS cluster → 
