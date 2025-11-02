@@ -847,4 +847,21 @@ Paste this 3 times and Edit data message each time to user sign up, then user lo
 
 3 records sent now check amazon S3 and type in firehose to find bucket and it has 0 objects inside it until the buffer expires then when it loads, keep clicking object ID till you get record ID then click open and use text editor → Will show the data messages e.g user signup, user login, user logout.
 
-To clean up → Delete kinmesis stream, then demostream.
+To clean up → Delete kinesis stream, then demostream.
+
+65. Amazon ECS Cluster Hands on Labs.
+ECS → toggle new ECS experience → Go to Clusters tab → Create cluster → Name=DemoCluster → Infrastructure= Fargate (serverless), EC2 instances, external instances using ECS anywhere. Enable both Fargate and EC2 instances → ASG=Create new ASG, OS/architecture= Amazon Linux 2, EC2 instance type= t2.micro, Desired capacity, Root EBS volume size, → Network settings for Amazon EC2 Instances =Pick VPC and subnets, use existing security group, auto-assign public IP → Create.
+
+While its being created lets view the ASG being created alongside it.
+Go to ASG → Click ASG tab → Should see an ASG called Infra-ECS-Cluster → Click and it’ll show details such as network (AZ’s) instance type requirements, and load balancing etc. 
+
+The cluster should have been loaded by now.
+Click DemoCluster → View services, tasks, infrastructure, metrics, tags.
+Infrastructure shows 3 capacity providers → 
+FARGATE → Fargate mode
+FARGATE_SPOT, → Spot instances 
+Infra-ECS-Cluster → ASG Provider. → Can launch clusters directly through this ASG and has managed scaling and current size should be 0.
+Can edit this by going to the ASG page / EC2 then ASG service tab service details and edit then edit Group size and its desired capacity.
+Then click Instance management within the infra ECS cluster and you’ll see an EC2 created based on desired capacity and we’ll see it within DemoCluster under the Container instances tab. 
+
+This shows when we create an EC2 task it’ll be on one of the capacity providers (Fargate, fargate spot, infra-ECS-Cluster).
