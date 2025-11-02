@@ -897,7 +897,6 @@ Now it goes into CloudFormation which will take awhile to delete entire stack (E
 Can also delete task definitions (Dont cost any money to keep though) by clicking Actions then 
 Deregister
 
-
 68. Amazon EKS - Hands On
 EKS → Add cluster → Create → DemosEKS, default kubernetes version. → Create Cluster role following the hyperlink →  On new tab Open IAM role → Trusted entity=AWS Service → Choose EKS and then our EKS Cluster → Next → Add permissions=AmazonEKSCluster and a unique Role name e.g eksClusterRole, a description for it → Create role. → Back to original EKS tab → Secrets  Encryption toggled on/off → Specify networking →  VPC, subnets, SG, choose IPv4/IPv6→ Cluster endpoint access Public → default settings for VPC CNI → next → Create
 
@@ -906,3 +905,12 @@ Go to Compute → Add node group → DemoNodeGroup, create Node IAM role click h
 
 Go back to original Node Group tab → Add Node role → Can specify Launch template → Next → AMI  type, Amazon Linux 2, Capacity type On-Demand, Instance type = t3.micro, disk size =20, Decide Node scaling config (Desired, Min, max), → Node group update config (Number or %) → Specify network configs (VPC, subnets etc) → Next  → Create
 So this is the way to deploy EC2 instances for our EKS cluster but they’re managed by AWS which makes it easier. 
+
+69. AWS App Runner hands on labs.
+App runner → Create service → Source = Container repository & Amazon ECR Public → Open new tab to Amazon ECR Public Gallery and type httpd → docker/library/httpd and copy its address and paste it back on Container image URL → Deployment trigger = Manual → Next → Service name=DemoHTTP, Virtual CPU & memory =1 vCPU and 2GB, can add Environment variables and port 8080. → Auto scaling = default configuration → Health checks= leave as default → Networking = public → Create & deploy.
+
+Can view Logs, activity, metrics, observability, configuration and even link custom domains.
+
+AppRunner is a powerful all in one service to deploy containers in a production fashion.
+
+Once status shows running → Click domain link and it should work.
