@@ -896,3 +896,13 @@ Now it goes into CloudFormation which will take awhile to delete entire stack (E
 
 Can also delete task definitions (Dont cost any money to keep though) by clicking Actions then 
 Deregister
+
+
+68. Amazon EKS - Hands On
+EKS → Add cluster → Create → DemosEKS, default kubernetes version. → Create Cluster role following the hyperlink →  On new tab Open IAM role → Trusted entity=AWS Service → Choose EKS and then our EKS Cluster → Next → Add permissions=AmazonEKSCluster and a unique Role name e.g eksClusterRole, a description for it → Create role. → Back to original EKS tab → Secrets  Encryption toggled on/off → Specify networking →  VPC, subnets, SG, choose IPv4/IPv6→ Cluster endpoint access Public → default settings for VPC CNI → next → Create
+
+Go to resources tabs for more kubernetes specific things.
+Go to Compute → Add node group → DemoNodeGroup, create Node IAM role click hyperlink and opens new tab → Trusted entity=AWS Service → EC2 → Add Permissions = AmazonEKSWorkerNodePolicy, Choose Clear filters, in filter policies enter AmazonEC2ContainerRegistryReadOnly → enter AmazonEKS_CNI_Policy → Create role
+
+Go back to original Node Group tab → Add Node role → Can specify Launch template → Next → AMI  type, Amazon Linux 2, Capacity type On-Demand, Instance type = t3.micro, disk size =20, Decide Node scaling config (Desired, Min, max), → Node group update config (Number or %) → Specify network configs (VPC, subnets etc) → Next  → Create
+So this is the way to deploy EC2 instances for our EKS cluster but they’re managed by AWS which makes it easier. 
