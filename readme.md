@@ -888,3 +888,11 @@ We can even create more  tasks → Click update service → change desired task 
 Now ECS will run two more in addition (total of 3) all on fargate meaning AWS handles the provisioning of the EC2s → If we go back to the nginx url welcome page and keep refreshing, it’ll show the Server Address IP changing showing our Load balancer is distributing traffic between all 3 fargates. 
 
 We can also edit tasks to be 0 so service is still here but containers are still running to save on costs. → Then go to ASG click the ASG for the service and ensure its also set to a 0 desired capacity. → Ensures no EC2 is being run on our ECS cluster → 
+
+67. Amazon ECS Clean Up - Hands on.
+Go to ECS → Clusters → Stop the service first by having 0 tasks running → To do this update and seat desired tasks to 0 → Update → Then delete service.
+
+Now it goes into CloudFormation which will take awhile to delete entire stack (ECSService, Listener,SG etc) → When this is all deleted go delete DemoCluster made via Delete cluster → This will delete the DemoCluster infra in cloudformation such as the Cluster, ASG, Launchtemplate Etc.
+
+Can also delete task definitions (Dont cost any money to keep though) by clicking Actions then 
+Deregister
