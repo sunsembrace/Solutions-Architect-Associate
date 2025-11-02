@@ -927,3 +927,8 @@ Monitor→ View CloudWatch logs →  Log stream 1 → Shows events e.g error and
 Configurations → Can decide storage and ephemeral storage, existing role → can click Hyperlink “Hello world” which is the role that allows you to access CloudWatch and see Permissions Policies to view/edit policy. → Can click the existing one and see its permission is oriented around CloudWatch Logs.
 
 We can also on the left tab click Triggers and select any source that's available (other AWS services)
+
+71. Lambda Concurrency - Hands on Labs.
+Lambda → Select the function → configuration:Concurrency tab → edit → Set a reserve concurrency e.g you start with 1k, but say you set 20 as Reserve concurrency you’ll have 980 left.
+To test we can set reserve concurrency to 0 (function is therefore always throttled) → Click Test tab then test → Error message: Calling the Invoke API action failed with this message: Rate Exceeded. → Can fix this by going back into edit and changing it to use unreserved account concurrency /reserve a x number.  
+Can also Add provision concurrency configurations to prevent cold starts → Add → Decide qualifier type: Alias or Version → Provisioned concurrency: set a number → save (but costs money)
