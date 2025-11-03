@@ -932,3 +932,14 @@ We can also on the left tab click Triggers and select any source that's availabl
 Lambda → Select the function → configuration:Concurrency tab → edit → Set a reserve concurrency e.g you start with 1k, but say you set 20 as Reserve concurrency you’ll have 980 left.
 To test we can set reserve concurrency to 0 (function is therefore always throttled) → Click Test tab then test → Error message: Calling the Invoke API action failed with this message: Rate Exceeded. → Can fix this by going back into edit and changing it to use unreserved account concurrency /reserve a x number.  
 Can also Add provision concurrency configurations to prevent cold starts → Add → Decide qualifier type: Alias or Version → Provisioned concurrency: set a number → save (but costs money)
+
+72. DynamoDB Hands on Labs.
+DynamoDB → Create Table. → name = DemoTable, Partition key (e.g user_id) + sort key (optional) will make our primary key → settings= Default settings → Read/Write capacity settings → On-demand → Auto scaling = On/off, Provisioned capacity units =5, 
+Or could’ve done Provisioned → Decide Minimum capacity units, max, and target utilization (%), 
+
+Can use Capacity calculator to figure out which write/read is best for you. → DynamoDB should show estimated costs of your table → Create table. 
+
+Click into DemoTable → View items → Create item → Lets you add attributes in key value pairs (e.g name, x, fave_move, y, fave_number = z → Create item → gets inserted into table.
+
+You can do another item and give it different attributes e.g name, fave_cat, fave_colour as DynamoDB means you don't need to have all the attributes for all the items.
+This is the power of a noSQL database over a SQL one.
