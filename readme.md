@@ -943,3 +943,76 @@ Click into DemoTable → View items → Create item → Lets you add attributes 
 
 You can do another item and give it different attributes e.g name, fave_cat, fave_colour as DynamoDB means you don't need to have all the attributes for all the items.
 This is the power of a noSQL database over a SQL one.
+
+73. API Gateway Basics Hands-On
+API Gateway → REST API → Build → API details:New API, name=MyFirstAPI, API Endpoint=Regional, create method, Method Type = GET, Integration Type, Lambda function 
+
+On new tab open up Lambda and create a Lambda function for this hands on labs → Lambda → Create Function → function-name= api-gateway-root, Runtime = Python 3.11 → Create → Paste code into Code Source. → Deploy  , can even test it as DemoTest. 
+
+Import json
+
+Def lambda_handler (event, context):
+	Body = “Hello from Lambda!”
+	statusCode = 200
+	Return {
+		“StatusCode”: statusCode,
+		“Body”: json.dumps(body),
+		“Headers”: json.dumps(body),
+		“Headers”: {
+			“Content-Type”: “application/json”
+		}
+	}
+Copy the Lambda topic ARN Go back to API Gateway creation tab → paste it in the Lambda Function → Create Method → This gives API Gateway the right to automatically invoke our Lambda function.
+
+Go back to Lambda page, refresh and in function overview it’ll show API Gateway was added as a trigger. → Can confirm by clicking configuration → Permission → Resource-based policy statements → Select item in it and view the policy and it shows apigateway.amazonaws.com allowed.
+
+Shows client → Method request → Integration request → Lambda integration → Integration response (proxy integration) → Method response → Original client 
+Proxy integration = API Gateway automatically passes the backend output to the caller as the complete payload. 
+
+Click Test to test API → Testmethod = Query strings, headers etc but we don't need to specify anything. But we can click Test and it should show the 200 and our “hello” msg from our code.  It also shows an execution log which helps us when debugging. 
+
+So first API method Execution on a lambda function has been done. 
+
+No lets try to debug
+In JSON code add print(event)
+
+Import json
+
+Def lambda_handler (event, context):
+	print(event)
+	Body = “Hello from Lambda!”
+	statusCode = 200
+	Return {
+		“StatusCode”: statusCode,
+		“Body”: json.dumps(body),
+		“Headers”: json.dumps(body),
+		“Headers”: {
+			“Content-Type”: “application/json”
+		}
+	}
+
+So now we invoke our Lambda again from our API Gateway by clicking Test should show same message
+But since we added print, we should be able to find it our specific Lambda function Monitor tab → View CloudWatch logs → Find the latest log stream → and we should see the printed event. Showing resource/, path/, httpmethod, get, multivalue headers, querystringparameters, etc. Loads of info passed from API Gateway to our Lambda function and Lambda can use this to forge a response back to API Gateway.
+
+Now go back to API Gateway page where you can test your GET Method → Click Create a resource → resource path = / and resource name = houses → Create resource.
+
+It’ll now display the /houses path → Click it and create a method → Method Type=GET, Integration type = Lambda function, Lambda proxy integration toggled on → paste the same → On new lambda tab, create a Function → name = api-gateway-houses-get, runtime = python 3.11, → Create function → Then paste JSON code below into Code Source → Test and deploy → Go back to API Gateway create method page and paste the lambda topic ARN or select it → Create method. 
+ 
+Import json
+
+Def lambda_handler (event, context):
+	Body = “Hello from my pretty house!”
+	statusCode = 200
+	Return {
+		“StatusCode”: statusCode,
+		“Body”: json.dumps(body),
+		“Headers”: json.dumps(body),
+		“Headers”: {
+			“Content-Type”: “application/json”
+		}
+	}
+
+Test it and it should work.
+Now we have two GET methods which invoke Lambda → Root GET, and houses GET.
+Now we want this accessible from a browser so click Deploy API → stage = new stage → Now we have invoke URL, paste it in the browser and it should work. If you add path /houses it should also work.
+If i do an invalid path e.g /animals → I get a message saying “Missing Authentication Tokens”
