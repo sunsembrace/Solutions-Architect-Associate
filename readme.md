@@ -1079,3 +1079,10 @@ Where httpstatus=’403’;
 Paste the above in and it’ll show us unauthorized access and we see lots of rows and we can analyze and see if there's any breaches or intended.
 
 So athena let us query all our S3 data without setting up any servers , so all we had to do was create our database and then our table within it using SQL to query our data
+
+75. Amazon Managed Service for Apache Flink: Hands on Labs
+Amazon Kinesis → Left tab click Analytics applications (Streaming applications) → Create streaming application → Choose a supported runtime apache flink  version, application name & desc, access to application resources = create/update IAM role or choose from IAM roles that Kinesis Data Analytics can assume → Template for application settings = Templates = Development,Production, production template → Create streaming application.
+
+If you wanted to use Amazon Kinesis Apache Flink for SQL applications just click SQL applications on left tab → This is no longer recommended for new applications and AWS recommend using Kinesis Data Analytics Studio → but if you wanted to proceed just click → Create SQL application (legacy)
+
+If you wanted to do a one off analysis we could → Create studio notebook → Quick create with sample code → General → Studio notebook name (but we aren't doing this in this labs)
