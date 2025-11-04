@@ -1016,3 +1016,66 @@ Test it and it should work.
 Now we have two GET methods which invoke Lambda → Root GET, and houses GET.
 Now we want this accessible from a browser so click Deploy API → stage = new stage → Now we have invoke URL, paste it in the browser and it should work. If you add path /houses it should also work.
 If i do an invalid path e.g /animals → I get a message saying “Missing Authentication Tokens”
+
+74. Athena hands on labs.
+Athena → query your data with Trino SQL → Launch query editor→ have a GUI but must edit settings to set up a query result in location → so new tab create bucket
+S3 → AWS-athena-sunsembrace-eu-central-1 → Create bucket → view details, copy name → 
+Paste it back into query editor → with s3://<pasted_name> prefix → Save
+Click Editor tab → we want queries on a specific bucket
+
+
+CREATE EXTERNAL TABLE IF NOT EXISTS s3_access_logs_db.mybucket_logs(
+	BucketOwner STRING,
+	RequestDateTime STRING,
+	RemoteIP STRING,
+	Requester STRING,
+	RequestID STRING,
+	Operation STRING,
+	Key STRING,
+	RequestURI_operation STRING,
+	RequestURI_httpProtoversion STRING,
+	HTTPstatus STRING,
+	ErrorCode  STRING,
+	BytesSent BIGINT,
+	ObjectSize BIGNIT,
+	TotalTime STRING,
+	TurnAroundTime STRING,
+	Referrer STRING,
+	UserAgent STRING,
+	VersionId STRING,
+	HostId 	STRING,
+	SigV STRING,
+	CipherSuite STRING,
+	AuthType STRING,
+	EndPoint STRING,
+	TLSVersion STRING,
+)
+ROW FORMAT SERDE ‘org.apache.hadoop.hive.serde2.RegexSerDe’
+WITH SERDEPROPERTIES (
+	‘Serialization.format’ = ‘1’, ‘input.regex’ = ‘ (rest pasted from elsewhere)
+LOCATION ‘s3://s3-access-logs-sunsembrace/’;
+
+Now click run query and on the left it should show tables and all the fields we created.
+Can then click the 3 dots under tables next to mybucket_logs and click preview table
+This will query 10 rows from our table.
+SELECT * FROM “s3_access_logs_db”.”mybucket_logs” limit 10;
+
+Below it’ll show all the rows with all the fields such as requestId, operation, requesturi_operation etc.
+
+This makes viewing logs far easier thanks to athena, then clicking each object manually in S3.
+
+Can do more advanced queries too with the below
+
+SELECT requesturi_operation, httpstatus, count (*) FROM “s3_access_logs_db”.”mybucket_logs”
+GROUP BY requesturi_operation, httpstatus;
+
+Paste the above in. This query looks at all our data so might take a slight bit longer and it’ll show us e.g 404 errors, 142 exist and we analyze why.
+
+
+SELECT * FROM “s3_access_logs_db”.”mybucket_logs”
+Where httpstatus=’403’;
+
+
+Paste the above in and it’ll show us unauthorized access and we see lots of rows and we can analyze and see if there's any breaches or intended.
+
+So athena let us query all our S3 data without setting up any servers , so all we had to do was create our database and then our table within it using SQL to query our data
