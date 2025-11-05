@@ -1089,3 +1089,6 @@ If you wanted to do a one off analysis we could → Create studio notebook → Q
 
 76. Amazon Transcribe Hands on Labs
 Transcribe → Create a transcript → Language settings, specific language, start streaming → Directly transcribes into speech when you speak into mic → Can also enable PII by toggling which specific info you want redacted. 
+
+77. Amazon Polly Hands on Labs
+Polly → Try Polly → Engine=Neural, language=english,voice=Joanna,female. → Add input text → <speak> Hi! My name is Joanna. <break time=”3s” / > I love AWS. </speak> → It would read as AWS but by toggling Customize pronunciation we can have it pronounce AWS as “Amazon Web Services”
