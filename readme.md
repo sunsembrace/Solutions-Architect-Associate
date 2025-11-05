@@ -1134,3 +1134,21 @@ Paste it into AWS CLI (Cloudshell)
 Then refresh alarm and it’ll show its in alarm state with red icon symbol in top left
 Then in history it’ll show logs of how alarm went from OK to in alarm and the action it did which was successful.
 Then we can verify by viewing ec2 instance, refresh page and see Instance State shutting down.
+
+82. Amazon EventBridge - Hands on labs.
+EventBridge → Eventbridge Rule/Pipes/Schedule/Schema registry → Create → 
+
+Event rules = A way for you to react to things happening in your account.
+Create rule → name = e.g EC2InstanceStateChangeDemo, desc = whenever an EC2 state changes on this account notify me, event bus = default, Rule type = rule with an event pattern → next → Event source = AWS events or EventBridge partner events → Event pattern = use pattern form → Event source = AWS Services → AWS service = EC2, event type = EC2 Instance State-change Notification → Event type specification 1 = any state/specific state, (shows gui of it in JSON format) → Next → Select a target → SNS topic, target location = target into this account, Topic = Choose a topic or Go into new tab and create a topic in SNS (name x create it) → If the topic was linked to an email we would receive an email every time an EC2 instance state changed. → next → next → Create rule 
+
+Create schedule → Name e.g RunEveryHour, schedule → Continue in EventBridge Scheduler → Schedule pattern occurrence = Recurring schedule, Timezone = UTC, schedule type = rate-based schedule → rate expression (value and metric) flexible time window = off → Timeframe → Next → Target detail, target API = Templated targets = Pick service → next → create.
+
+Event Buses → we have one automatically called default →  or click event bus and create event bus → name,desc, encryption, Logs destination = CloudWatch Logs or Data Firehose stream → Create
+
+We have a replay on the left column in order to do some debugging and look into a past event.
+
+We also have partner event sources → Can set up events in relation to these partners e.g Auth0 when a user signs up it sends an event directly into EventBridge and from there we can set up any type of rules/automation we want. Basically a connection between Saas and aws infrastructure without us having to type any new code.
+
+We can also send certain rules to API destinations outside of AWS to invoke a specific bit of architecture outside of our account.
+
+We can also click schemas to find different types of schemas and events and what to expect in the JSON and download its code bindings to automatically develop applications that use events directly without us having to set up the schema or code. 
