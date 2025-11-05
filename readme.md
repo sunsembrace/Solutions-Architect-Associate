@@ -1086,3 +1086,6 @@ Amazon Kinesis → Left tab click Analytics applications (Streaming applications
 If you wanted to use Amazon Kinesis Apache Flink for SQL applications just click SQL applications on left tab → This is no longer recommended for new applications and AWS recommend using Kinesis Data Analytics Studio → but if you wanted to proceed just click → Create SQL application (legacy)
 
 If you wanted to do a one off analysis we could → Create studio notebook → Quick create with sample code → General → Studio notebook name (but we aren't doing this in this labs)
+
+76. Amazon Transcribe Hands on Labs
+Transcribe → Create a transcript → Language settings, specific language, start streaming → Directly transcribes into speech when you speak into mic → Can also enable PII by toggling which specific info you want redacted. 
