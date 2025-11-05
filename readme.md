@@ -1092,3 +1092,6 @@ Transcribe → Create a transcript → Language settings, specific language, sta
 
 77. Amazon Polly Hands on Labs
 Polly → Try Polly → Engine=Neural, language=english,voice=Joanna,female. → Add input text → <speak> Hi! My name is Joanna. <break time=”3s” / > I love AWS. </speak> → It would read as AWS but by toggling Customize pronunciation we can have it pronounce AWS as “Amazon Web Services”
+
+78. Amazon Comprehend Medical Hands on Labs
+Amazon Comprehend Medical → Launch real-time analysis → click analyze for the input text inside → Provides a structured visual tree of analyzed data from unstructured giving us insights into the original text hence why its an NLP (Natural Language Processing).
