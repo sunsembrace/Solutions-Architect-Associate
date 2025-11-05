@@ -1109,3 +1109,9 @@ Can also go to log groups tab → Create log group → name, and apply KMS encry
 
 Log insights tab → Allos us to use a nice query language to query some insights for your log groups  → Run query → Can decide what timeframe after and see logs/visualisation.
 Can also save the queries for future use or find other ones people use to use.
+
+80. CloudWatch Logs - Live tail - Hands on Labs
+CloudWatch → Log groups → Create Log group → DemoLogGroup → Create → Create Log Stream → DemoLogStream → Click to get inside it → Start tailing → Now within Live Tail Tab → Filter will show DemoLogGroup and Demo LogStream (can change then apply) → wait for log events that match the filter →  
+
+In new tab,  go back to DemoLogGroup → Log stream tab below → Select into DemoLogStream → Actions:Create Log Event → “hello world!” → Create → Now go back to Live Tail tab and it’ll also show up there. → We can expand each log for more info and for a direct URL to see which Direct Log Stream it happened into if we had multiple steam logs.
+Only get one hour of free usage a day of Live Tail → so remember to close and cancel livetail session. 
