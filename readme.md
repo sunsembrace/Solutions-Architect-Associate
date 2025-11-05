@@ -1095,3 +1095,17 @@ Polly → Try Polly → Engine=Neural, language=english,voice=Joanna,female. →
 
 78. Amazon Comprehend Medical Hands on Labs
 Amazon Comprehend Medical → Launch real-time analysis → click analyze for the input text inside → Provides a structured visual tree of analyzed data from unstructured giving us insights into the original text hence why its an NLP (Natural Language Processing).
+
+79. CloudWatch Logs - Hands On Labs
+CloudWatch → Can go to log groups pick a log group e.g runCommandOutput → Click Log streams and filter for specific words like HTTP or installing to show those logs. → Click metric filters and click create metric filters → Filter patterns = specify the terms or patterns to match in your log events to create metrics = e.g installing and it’ll show logs containing it → Click next → Create Filtername= e.g DemoMetricFilterA and filter namespace (lets you group similar metrics) = DemoMetric, Metric value (Metric value is the value published to the metric name when a filter pattern match occurs) = e.g 1 and a default value e.g seconds,GB, etc→ Create
+
+Now click Metrics on left side and click clear graph → then refresh page and it click All and it would show here if we had log output but we don't have that yet → But idea is when it does show up you can create an Alarm on top of this metric filter → Create alarm → Based on if it exceeded a certain threshold which we decide → 
+
+Can go to subscription filters → Create ElastiSearch/Lambda/Kinesis Firehose subscription filter 
+Can create up to 2 subscription filters per log group
+Can also click actions to edit retention period 
+Can click actions to export data to S3 → Can use Stream prefix is we wanted specifics.
+Can also go to log groups tab → Create log group → name, and apply KMS encryption if we wanted → Create 
+
+Log insights tab → Allos us to use a nice query language to query some insights for your log groups  → Run query → Can decide what timeframe after and see logs/visualisation.
+Can also save the queries for future use or find other ones people use to use.
