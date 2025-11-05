@@ -1115,3 +1115,22 @@ CloudWatch → Log groups → Create Log group → DemoLogGroup → Create → C
 
 In new tab,  go back to DemoLogGroup → Log stream tab below → Select into DemoLogStream → Actions:Create Log Event → “hello world!” → Create → Now go back to Live Tail tab and it’ll also show up there. → We can expand each log for more info and for a direct URL to see which Direct Log Stream it happened into if we had multiple steam logs.
 Only get one hour of free usage a day of Live Tail → so remember to close and cancel livetail session. 
+
+
+81. CloudWatch Alarms Hands on
+Quickly create an EC2 
+
+CloudWatch → Select metric → Paste in Instance ID → Select it then choose a metric statistic and period → Conditions = Static, whenever CPUUtililzation is = Greater, Greater/Equal, Lower/Equal, Lower than [set threshold], Datapoints to alarm = [x] out of [x] → Missing data treatment, Treat missing data as missing → Next → Configure actions, can add any of the following: Notification, Auto scaling action, EC2 action, system managers action. → say we pick EC2 action → Alarm state trigger: In alarm → Take the following action: e.g Terminate this instance → Next → Add name and description → TerminationEC2OnHighCPU → Next → Create alarm → 
+
+
+Alarm state says insufficient data so just cause the EC2 to get high CPU usage for 15min which is long
+Or we can use an API call name set alarm state and see what would happen if the alarm went into the breach phase.
+So on google type in aws Cloudwatch set alarm state → go to synopsis for commands e.g set-alarm-state
+–alarm-name<value>
+–state-value <value>
+–state-reason <value>
+
+Paste it into AWS CLI (Cloudshell)
+Then refresh alarm and it’ll show its in alarm state with red icon symbol in top left
+Then in history it’ll show logs of how alarm went from OK to in alarm and the action it did which was successful.
+Then we can verify by viewing ec2 instance, refresh page and see Instance State shutting down.
