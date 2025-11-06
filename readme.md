@@ -1152,3 +1152,23 @@ We also have partner event sources → Can set up events in relation to these pa
 We can also send certain rules to API destinations outside of AWS to invoke a specific bit of architecture outside of our account.
 
 We can also click schemas to find different types of schemas and events and what to expect in the JSON and download its code bindings to automatically develop applications that use events directly without us having to set up the schema or code. 
+
+83. Config Rules - Notifications / Remediation
+Use EventBridge to trigger notifications when AWS resources are non-compliant
+Ability to send configuration changes and compliance state notifications to SNS (all events - use SNS filtering or filter at client-side)
+
+ AWS Config Hands on
+AWS Config → Get started → Resource types to record = record all resources supported in this region, AWS Config rule  = Create AWS Config service linked role, Delivery method = Create a S3 bucket, Amazon SNS topic → Create a topic = Leave unticked since we dont want to do this right now → Next → Confirm.
+Takes awhile for AWS Config to discover all resources but when it shows some → You can search for specific resources e.g security groups → Lets us view resource Timeline → Gives us all the events related to the resource → 
+
+
+Rules → Create custom rule → Add AWS managed rule e.g restricted SSH → Resources=EC2 sg → Next → Add rule.
+Refresh page when evaluation is done and it’ll show logs of EC2s that are non compliant.
+We can click the instances shown and it’ll have a tab showing “rules applied” compliance or non compliance
+
+If an instance is non compliant → We can click manage resource → e.g Delete an inbound rule such as TCP port range 22 from IPv4  anywhere (0.0.0.0/0) → This action causes a re-evaluation of the resource by CloudTrail → It should now be compliant
+Now go into resource timeline of the instance, and we can see a rule compliance to trigger and show on the logs!
+
+For another non compliant instance → Click Action → Manage remediation → We can do manual remediate or automatic where it has a number of retries → Choose remediation action = find one that matches the rule not something unrelated like delete snapshot, attach ebs volume etc.
+
+84. 
