@@ -1267,3 +1267,9 @@ Now say you had chosen secret type = Credentials for Amazon RDS database, you en
 88. VPC Hands on
 VPC → Create VPC → IPv4 CIDR block = 10.0.0.0/16 (gives us first ip as 10.0.0.0 and last IP as 10.0.255.255 with total host = 65,536), no IPv6, Tenancy = default, tags= Name, DemoVPC → Create VPC (it also creates a main route table and main NACL behind the scenes)
 Actions → Edit CIPR → Allow us to add mor CIDR blocks and can have up to 5 different CIDR blocks.
+
+89. Subnet hands on
+VPC → Subnets → filter by VPC: DemoVPC → create subnet → VPC ID (demovpc id) → Subnetname = PublicSubnetA, AZ = Eu-west-1a, IPv4 CIDR block = 10.0.0.0/24 → Subnet 2 of 2, name = PublicSubnetB, AZ = Eu-west-1b, IPv4 CIDR block = 10.0.1.0/24 (this is the next range after the one we defined previously) → Subnet 3 of 3, name = PrivateSubnetA, AZ=Eu-West-1a, IPv4=10.0.16.0/20 → Subnet 4 of 4, name = PrivateSubnetB, AZ = eu-west-1b, IPv4 = 10.0.32.0/20 → Create subnet → Creation successful as no overlapping IP addresses 
+
+→ right hand shows different subnets having different Available IPv4 addresses but will always be -5 as these are reserved by AWS.
+Now we havent actually done anything to differentiate them as public or private rather than just creating and naming them. There’s still a missing property to be done to differentiate whether it truly is private or public.
