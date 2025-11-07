@@ -1290,3 +1290,30 @@ Now since our EC2 was launched in the public subnet we wanna edit the routes of 
 
 Now go back to EC2 connect → connect → IT should work!
 Then ping google.com and it should send some data back to show it works!
+
+91. Bastion Host Hands on Labs
+So using the previous EC2 instance we made in our public subnet (or just make another) → Rename it to Bastion Host →  Make a keypair on → Create keypair = name =demoBastionkeypair, .pem and save file.
+
+Now we make an instance in a private subnet → Launch an instance → PrivateInstance →  Use keypair we created → Network settings → VPC = DemoVPC, subnet = PrivateSubnetA, → Create a security group → name = PrivateBastionSG, type = SSH, Source type = Custom, source = Launchwizard1 sg, description = allow SSH from the bastion host → Launch instance
+
+So now I have to connect to a private instance.
+Select bastionInstance, click connect, EC2 connect so we can SSH into our bastion host → Now get the private IPv4 address from our Private instance in its details and on the CLI enter ssh ec-2-user@10.0.22.82
+Wont work bc we didnt specify a keypair
+
+Nano DemoBastionKeyPair.pem (paste the content of the previously .pem file we downloaded into it) → Save
+
+Cat DemoKeyPair.pem to see contents to ensure it saved
+Then  change permissions of it
+Chmod 0400 DemoBastionKeyPair.pem
+Now try previous line again like below
+Ssh ec2-user@10.0.22.82 -i DemoBastionKeyPair.pem
+Says enter passphrase but we know its a formatting issue so now we try with a different text editor and repeat all steps but with vim but first remove old file with 
+Rm DemoBastionKeyPair.pem
+
+Vi DemoBastionKeyPair.pem → paste into contents of previous .pem file
+Cat DemoBastionKeyPair.pem to see if contents saved.
+Chmod 0400 DemoBastionKeyPair.pem
+Ssh ec2-user@10.0.22.82 -i DemoBastionKeyPair.pem
+
+Now works!
+Now if we ping google.com it wont work. Why? Because the private EC2 instance does not have internet access. To resolve this we can use a NAT instance but not for this labs.
