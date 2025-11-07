@@ -1258,3 +1258,8 @@ Aws ssm get-parameters-by-path–path /my-app/dev
 This gives a result of all parameters in this namespace including the dev pw parameter.
 We can also use the –recursive flag → This gives us access to all the namespaces recursively  including dev and prod etc
 E.g aws ssm get-parameters-by-path –path /my-app –recursive
+
+87. AWS Secret Manager Hands on Labs
+Secret Manager - Store a new secret → Secret type = Credentials for Amazon RDS database → Credentials (username,password) but if you had chosen Other Type of Secret you can store anything in any type of key/value pair → Then specify Encryption key → next → Secretname, resource permissions (create resource policy), replicate secret (choose region and encryption key) etc → Configure automatic rotation if we want and we need to choose a time and then a rotation function which invokes a lambda function to perform said rotation → 
+
+Now say you had chosen secret type = Credentials for Amazon RDS database, you enter username and pw, encryption key and then the specific DB and if you wanted to rotate it then automatically the database also gets updated.
