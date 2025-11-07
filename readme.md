@@ -1317,3 +1317,17 @@ Ssh ec2-user@10.0.22.82 -i DemoBastionKeyPair.pem
 
 Now works!
 Now if we ping google.com it wont work. Why? Because the private EC2 instance does not have internet access. To resolve this we can use a NAT instance but not for this labs.
+
+92. NAT Instance Hands on 
+EC2 → Launch Instance → Browser AMIs, search NAT click community AMI and use most recent one with amazon-ami-vpc-2018 x86_64-ebs → t2.micro → DemoKeyPair → New security group, Type: SSH Port 22 from anywhere (0.0.0.0/0) and then add new rule, Security group rule 2 Type: HTTP source type: custom, Source:10.0.0.0/16 (cidr block same as our VPC) → Add 3rd security group but this time from HTTPS and same cidr block → Network settings → VPC = DemoVPC, subnet = In a public subnet,  make sure to name SG prior as NAT-instance-SG → Launch
+
+Now we want our other private instance to send internet traffic out through NAT instance
+Now NAT instance is created edit network settings → source / destination check → toggle Stop and save.
+Then send traffic via CLI to our nat instance
+So use EC2 direct connect on bastion host and then ssh-ec2-user@0.22.82 -i DemoBastionKeyPair.pem
+Ping google.com no internet access, so now to give it internet access
+We go to aws console and click route table and click PrivateRouteTable → Edit routes do destination 0.0.0.0/0 and target as Nat instance.  → Save
+What this does is that for any EC2 instance within this subnet (private), if you send traffic to the internet go through my EC2 instance (NAT instance).
+Ping google.com again but doesn’t work
+So we go to NAT instance and edit security group rules and add ICMP IPv4 rule from the same cidr block as vpc so ping works save
+Try ping and now it gives results!
