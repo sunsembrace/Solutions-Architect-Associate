@@ -1263,3 +1263,7 @@ E.g aws ssm get-parameters-by-path –path /my-app –recursive
 Secret Manager - Store a new secret → Secret type = Credentials for Amazon RDS database → Credentials (username,password) but if you had chosen Other Type of Secret you can store anything in any type of key/value pair → Then specify Encryption key → next → Secretname, resource permissions (create resource policy), replicate secret (choose region and encryption key) etc → Configure automatic rotation if we want and we need to choose a time and then a rotation function which invokes a lambda function to perform said rotation → 
 
 Now say you had chosen secret type = Credentials for Amazon RDS database, you enter username and pw, encryption key and then the specific DB and if you wanted to rotate it then automatically the database also gets updated.
+
+88. VPC Hands on
+VPC → Create VPC → IPv4 CIDR block = 10.0.0.0/16 (gives us first ip as 10.0.0.0 and last IP as 10.0.255.255 with total host = 65,536), no IPv6, Tenancy = default, tags= Name, DemoVPC → Create VPC (it also creates a main route table and main NACL behind the scenes)
+Actions → Edit CIPR → Allow us to add mor CIDR blocks and can have up to 5 different CIDR blocks.
