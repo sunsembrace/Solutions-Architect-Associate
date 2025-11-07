@@ -1235,3 +1235,26 @@ ExampleSecretFileEncrypted –output text –qeury Plaintext > ExampleFileDecryp
 
 #base64 decode for Linux
 Cat ExampleFileDecrypted.base64 | base64 –decode > ExampleFileDecrypted.txt
+
+86. SSM Parameter Store Hands on (CLI)
+AWS System Manager Parameter Store → Create Parameter → Parameter details, name =/my-app-dev/db-url , desc = DB url for dev env, → Tier = Standard (stores up to 10k standard parameters, 4kb in value max and cant share with other AWS accounts whereas Advanced has 100k standard parameters, 8kb in value max and can share with other accounts), type=string or SecureString, datatype = text or aws:ec2:image, value= anything → Create parameter → 
+Can see version 1 of this parameter, can also add another parameter as an extension of it by same method and → 
+
+Create parameter → name =/my-app-dev/db-url/password → type:SecureString, KMS key source = My current account, alias/aws/ssm (default) → Create parameter → Now if you click on it, you’ll see the value is hidden and you have to toggle show decrypted value
+
+Create another parameter → /my-app-prod/db-url etc aws before
+Then do the same for pw like before.
+Now we have 4 parameters and are ordered in a hierarchy
+
+
+Now lets try to access it via CLI
+aws ssm get-parameters –names - /my-app-dev/db-url /my-app-dev/db-url/password
+(click enter) and you get a result an entire json format of them but the pw was not shown and was returned as a encrypted msg
+So to decrypt it we use the same command but with a flag –with-decryption
+Aws ssm get-parameters –name /my-app-dev/db-url /my-app-dev/db-url/password –with-decryption
+
+Get Parameters by path
+Aws ssm get-parameters-by-path–path /my-app/dev
+This gives a result of all parameters in this namespace including the dev pw parameter.
+We can also use the –recursive flag → This gives us access to all the namespaces recursively  including dev and prod etc
+E.g aws ssm get-parameters-by-path –path /my-app –recursive
