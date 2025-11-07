@@ -1273,3 +1273,20 @@ VPC → Subnets → filter by VPC: DemoVPC → create subnet → VPC ID (demovpc
 
 → right hand shows different subnets having different Available IPv4 addresses but will always be -5 as these are reserved by AWS.
 Now we havent actually done anything to differentiate them as public or private rather than just creating and naming them. There’s still a missing property to be done to differentiate whether it truly is private or public.
+
+90. Internet Gateways & Route Tables Hands On 
+EC2 → Launch instance → choose demoVPC over AWS default → subnet, → Auto-assign Public is disabled by default (this is because to have it enabled by default we need to go into VPC in new tab, subnets, action, edit specific subnet and enable auto-assign) → Now refresh launch instance page and redo settings and it should be on enable by default → Create new SG, type: SSH on port 22→ Launch instance
+
+Select instance, click details → Now it's been assigned a public IPv4 address but has no internet connectivity. → How to make sure? Click connect, EC2 instance Connect → connect → we have ssh port 22 enabled yet cant connect due to a network issue → So this is where the IGW (Internet GateWay) comes into play
+
+Click IGW → Create IGW → DemoIGW → Create → you’ll see in details its in a detached state, so now click actions and attach it to a VPC → DemoVPC which now gives our EC2 instance internet access
+
+So retry EC2 instance connect → Connect and yet again another issue.
+So even though we have an IGW we need to give it a route so click route tables → we only have default aws one acting on implicit subnets better to have explicit subnet associates so → Create route table → name=PublicRouteTable, VPC = demoVPC, → Create → Then create 2nd one for PrivateRouteTable, DemoVPC 
+
+Then select each route table and click Edit Subnet associations → Add all public ones to public route table, and private one to private route table and save associations → 
+
+Now since our EC2 was launched in the public subnet we wanna edit the routes of the public routing table and click edit routes → Shows we have a traffic rule for 10.0.0.0/16 → to go to local → Edit and add 2nd rule 0.0.0.0/0 target=igw → Save changes
+
+Now go back to EC2 connect → connect → IT should work!
+Then ping google.com and it should send some data back to show it works!
