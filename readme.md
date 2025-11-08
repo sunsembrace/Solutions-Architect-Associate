@@ -1435,3 +1435,17 @@ Customer Gateways → create → name, BGP ASN, IP address (how it can be reache
 Virtual Private gateway → Create → name, ASN (autonomous system number) == amazon default asn or custom , 
 
 Then we need to connect the Customer Gateway and the Virtual Private gateway, therefore meaning we need to create a site to site vpn connection, so click it then create connection → Name, target gateway type = Virtual private gateway, transit gateway, specify the virtual private gateway and customer gateways that you want to use, local IPV4 CIDR block etc → Create
+
+99. IPV6 Hands On Labs.
+VPC → to enable IPV6 we need to add an IPv6 CIDR range → right click your DemoVPC and click edit CIDRs → Add new IPv6 CIDR → Amazon-Provided IPv6 block or IPv6 CIDR owned by me , choose network border group → Select CIDR → 
+
+Then go to subnets → selectPublicSubnetA → Actions:Edit IPv6 CIDRs → assign an IPv6 CIDR within the subnet e.g 00 → Save → then click actions: Edit subnet settings → Enable auto assign IPv6 address →  save
+
+Now go to EC2 → Select Bastionhost right click , networking: Manage IP addresses → Assign new IP address  (should say auto assign) → Save → confirm.
+Now the bastionhost has an IPv6 address as seen in details, then we could edit SG group of the instance to allow from IPv6 → Edit → add rule → SSH, Source:anywhere IPv6 → Save rules
+
+Now we can SSH into our bastion host using IPv6 address assuming our own computer has an IPv6 address → Now IPv6 isnt really common for your internet providers so test if you have one via google (Test your ipv6.com) and if you have one then you can access it otherwise wait for provider to add it overtime.
+
+Route table. → Click PublicRouteTable and it’ll show a new rule was added that allows anything using this CIDR of IPv6 should be local , meaning your EC2 instances if they have IPv6 addresses can communicate with each other and if within the CIDR all the traffic will remain local and not go through the public internet.
+
+Remember if you create EC2 instances and use up all available IPv4’s in your subnet, you need to create a new IPv4 CIDR block as an EC2 must have an IP address attached to it.
