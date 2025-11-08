@@ -1378,3 +1378,24 @@ So Now find default Route table and name it DefaultVPCMainRouteTable (the one th
 Go to publicRouteTable and click edit routes, edit rule and add a route → select a CIDR that corresponds with the default VPC, so go find default vpc in new tab and copy its IPv4 cidr and put target as peering connection →  save
 Now if we curl on CLI it still wont work as we need to modify the route table on the other route table.
 Edit DefaultVPCMainRouteTable add route → same cidr and peering connection, then save → Then curl and it should work.
+
+96. VPC Endpoints Hands On Labs
+Go to BastionHost → EC2 Instance Connect → Connect → ssh into private instance using its private ipv4 address → ssh user-ec2@<privateip> -i DemoBastionKeyPair.pem
+
+Now we wanna access S3 so we need to create an IAM role attached to the instance → Right click private instance, security, modify IAM role → Create a new role → EC2 → Attach permissions policy = AmazonS3ReadOnlyAccess → name = DemoRoleEC2, create, now back in the modify IAM role refresh and select DemoRoleEC2-S3Read only. → Save 
+
+Now go back to cli and type aws s3 ls → Displays all our buckets
+Now click curl google.com → Should work and display data
+Now go edit privateRouteTable on console that connects to the internet via the IGW, remove it in edit routes
+Now if we go back on CLI and do aws s3 ls and curl google.com it wont work and wont display any buckets. We removed its access through the internet
+
+Now we create private access to s3 via VPC Endpoints
+Endpoints → Create endpoints → AWWS Service, service =pick first interface option, → Pick vpc the endpoint os deployed in (DemoVPC), enable DNS, IPv4, Pick which AZ/subnets itll exist in e.g PrivateSubnetA and PrivateSubnetB, IPv4, select a SG to attach to endpoint which will define the security of how this endpoint is accessed from our other types of instances.
+
+Or we create a Gateway Endpoint so in Services instead type S3 and pick the service name with the type Gateway → Pick VPC → Pick Routetable = e.g PrivateRouteTable so that any request made within my private subnet in this route table is routed to this gateway endpoint, full access → Create Endpoint.
+
+Now it’ll show its associated with our private route table anadwe can verify this by clicking route tables , click routes, edit and w’ll see a new route added with the target as vpce-xyz
+
+Now reconnect to bastion host CLI and type aws s3 ls and curl google.com → Still doesnt work. → But it should. The rsn being its an issue of the CLI where its in the wrong region aka US-east-one, then type
+Aws s3 ls –region <our-region-x>
+Now works and displays s3 buckets even though our instance doesnt have internet access.
