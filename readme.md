@@ -1428,3 +1428,10 @@ So copy and paste the table and we need to change/specify our s3 bucket link  �
 
  Now we use the alter table lower to create partitions using  the documentation → paste it in and change the S3 link and change date→ Run → Successful and now we have added one partition into our table → 
 Now we can query it using the SELECT template in documentation → Click run and now it should show results and now we can start grouping datas if we want → then delete logs to not run any ongoing costs.
+
+98. Site to site VPN,  Virtual Private Gatework & customer Gateway hands on.
+Customer Gateways → create → name, BGP ASN, IP address (how it can be reached from aws, certificate ARN (which allows aws to connect into your VPN device to establish a connection) → Create
+
+Virtual Private gateway → Create → name, ASN (autonomous system number) == amazon default asn or custom , 
+
+Then we need to connect the Customer Gateway and the Virtual Private gateway, therefore meaning we need to create a site to site vpn connection, so click it then create connection → Name, target gateway type = Virtual private gateway, transit gateway, specify the virtual private gateway and customer gateways that you want to use, local IPV4 CIDR block etc → Create
