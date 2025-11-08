@@ -1399,3 +1399,32 @@ Now it’ll show its associated with our private route table anadwe can verify t
 Now reconnect to bastion host CLI and type aws s3 ls and curl google.com → Still doesnt work. → But it should. The rsn being its an issue of the CLI where its in the wrong region aka US-east-one, then type
 Aws s3 ls –region <our-region-x>
 Now works and displays s3 buckets even though our instance doesnt have internet access.
+
+97. VPC Flow Logs + Athena
+VPC → Select DemoVPC → Create FlowLog → DemoS3FlowLog → Decide Filter (e.g all), Max aggregation interval (10 or 1 min), destination (CloudWatch Logs or S3 etc but s3 for this labs) → Open new tab in S3 and create bucket → Demo-vpc-flow-logs → Create → Get bucket ARN from properties → Paste it into the flow log creation tab → Log record format = aws default format, → Create flow log
+
+Now create 2nd FlowLog for but CWLogs → Same settings but makes you create a destination log group and IAM role → Click setup permissions → Create role → Custom trust policy
+So in new line just go to principle and click enter and type “Service”: “vpc-flow-logs-amazonaws.com”
+→ click next 
+Now for permissions policy pick CloudWatchLogsFullAccess → Next → name it → Create
+
+Then refresh the 2nd flowlogs creation tab and select it in  IAM Role 
+Now make destination log group → new tab CloudWatch Log groups tab → Create log group → name = vpcflowlogs , retention = 1 day → Create
+Now refresh 2nd flow logs creation tab and select it in destination log group → Click Create flowlog
+
+So now we have 2 flow logs
+One flowing into S3
+One flowing into CloudWatch logs
+
+Now go into the S3 bucket refresh and you’ll see vpc flow log objects
+Now in cloudwatch logs, we’ll see 2 different Log streams and these log  streams correspond to the ENIs within the account 
+So now go to  the bastionhost instance and look at the ENI ID (under its networking tab) this corresponds for which cloudwatch logs it is and you’ll click it and see all the history and random logs from public IPs being rejected
+
+Now go on Athena to practice querying the data in the S3 bucket.
+First thing → Set up a query result location in Amazon S3 → View settings → manage, then specify the s3 path (create a new s3 bucket on separate tab for this and click properties and get its arn and prefix it with s3://  → save
+
+On google type aws vpc logs athen and it teaches you how
+So copy and paste the table and we need to change/specify our s3 bucket link  → CLick run and this completes it now we have a vpc_flow_logs table which is partitioned.
+
+ Now we use the alter table lower to create partitions using  the documentation → paste it in and change the S3 link and change date→ Run → Successful and now we have added one partition into our table → 
+Now we can query it using the SELECT template in documentation → Click run and now it should show results and now we can start grouping datas if we want → then delete logs to not run any ongoing costs.
