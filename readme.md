@@ -1360,3 +1360,21 @@ Go back to browser, refresh the page and you're stuck on infinite load bc NACL h
 
 Now lets go to Bastion Host edit outbound rules and remove it (doesn't allow outbound) but SG is stateful therefore meaning if the traffic is initiated from the outside and is allowed inbound then the return traffic will be authorized as well. 
 Refresh page and it’ll still work but if the EC2 instance was trying to initiate a connection to google account,, it would fail because theres no outbound rule that specifically allows it 
+
+95. VPC Hands on Labs
+DemoVPC and DefaultVPC (created when we made our account). They aren't connected yet.
+Go to EC2, launch an EC2 → name=DefaultVPC instance, demoKeyPair, launch in default vpc, create sg, ssh rule from anywhere → Launch
+Now we want this instance to connect to our bastionHost. But lets look at both their IPs and we can tell their in different VPCs as their ip addresses are very different, 
+
+So now lets use EC2 direct connect to ssh into our DefaultVPCinstance → 
+In another tab lets also connect to bastion host → Then do curl 10.0.0.72:80/ (returns hello world)
+Do same command on other CLI and we get a timeout as there’s no way for our EC2 instance right now to connect to the instance in the other VPC → This is why its called virtual private cloud because they’re isolated from a network perspective.
+
+ So to connect them we are going to click Peering connections on console → Create peering connectin → DemoPeeringConnection → select a local vpc to peer with(Requester) = DemoVPC, account = my account, region  = this region, VPC ID (Acceptor) = default VPC 
+Because the CIDRs don't overlap the status is considered to be associated → Create peering connection.--> Since both of the vpc’s are in our account we have to accept the request.
+
+Now VPC peering connection established we still need to modify the route table. (so if we try to curl  it still wont work on the non working instance)
+So Now find default Route table and name it DefaultVPCMainRouteTable (the one that came when account was created).
+Go to publicRouteTable and click edit routes, edit rule and add a route → select a CIDR that corresponds with the default VPC, so go find default vpc in new tab and copy its IPv4 cidr and put target as peering connection →  save
+Now if we curl on CLI it still wont work as we need to modify the route table on the other route table.
+Edit DefaultVPCMainRouteTable add route → same cidr and peering connection, then save → Then curl and it should work.
