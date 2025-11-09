@@ -1454,3 +1454,13 @@ Remember if you create EC2 instances and use up all available IPv4’s in your s
 
 VPC → Egress Only Internet gateways → Create egress only internet gateway → name = DemoEIGW, VPC=DemoVPC → Create.
 But to make it work we need to edit a  Route tables, so select PrivateRouteTable → routes → Edit routes → Add Route → destination = ::/0 , Target =eigw → save
+
+
+101. AWS Database Migration Hands on Labs
+AWS DMS → Get started → How you can use DMS: discover and asses, convert or move to managed, Migrate or replicate → How it works (provisioned or serverless): Create data collector, discover databases and collect data, analyze inventory, use recommendations. Etc 
+
+Endpoints → Create endpoint → Source endpoint or Target endpoint → Endpoint config, source engine, SSL mode etc → create if you had database
+Now once you create two endpoints, you can create a replication task.
+Create replication instance → you create an instance config with connectivity settings or  you can go back to AWS DMS get started and click create provisioned instance
+
+Then you go to tasks → Create task → Source Database endpoint → target database endpoint → Task mode: Provisioned / Serverless → Task type: Migrate only, migrate and replicate, replicate only. → VPC and AWS KMS Key settings etc → Create if we had database
