@@ -1449,3 +1449,8 @@ Now we can SSH into our bastion host using IPv6 address assuming our own compute
 Route table. → Click PublicRouteTable and it’ll show a new rule was added that allows anything using this CIDR of IPv6 should be local , meaning your EC2 instances if they have IPv6 addresses can communicate with each other and if within the CIDR all the traffic will remain local and not go through the public internet.
 
 Remember if you create EC2 instances and use up all available IPv4’s in your subnet, you need to create a new IPv4 CIDR block as an EC2 must have an IP address attached to it.
+
+100. Egress only Internet Gateway (eigw) hands on labs.
+
+VPC → Egress Only Internet gateways → Create egress only internet gateway → name = DemoEIGW, VPC=DemoVPC → Create.
+But to make it work we need to edit a  Route tables, so select PrivateRouteTable → routes → Edit routes → Add Route → destination = ::/0 , Target =eigw → save
