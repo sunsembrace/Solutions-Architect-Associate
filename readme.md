@@ -1464,3 +1464,16 @@ Now once you create two endpoints, you can create a replication task.
 Create replication instance → you create an instance config with connectivity settings or  you can go back to AWS DMS get started and click create provisioned instance
 
 Then you go to tasks → Create task → Source Database endpoint → target database endpoint → Task mode: Provisioned / Serverless → Task type: Migrate only, migrate and replicate, replicate only. → VPC and AWS KMS Key settings etc → Create if we had database
+
+
+102. AWS Backup Hands on Labs
+
+AWS backup → Create Backup plan → Start with a template → Choose a template= Daily-Monthly-1yr-Retention → Backup plan name = TestPlan, → Now backup rules → Daily backup rules backup frequency, backup window,  Transition to cold storage = pick duration, retention period, copy to destination → Similar for monthly→ Create plan
+
+Now its created click assign resource → name = TestAssignment, → Resource selection = Include all resource types or include specific, resource type: e.g dynamodb,refine selection using tags (key, condition for value, value e.g env, equals, production) → Click assign resources
+
+EC2 → EBS Volume → 1GB → Key, value = Environment, Production → This makes it backuped automatically by our AWS Backup → Create volume
+
+Backups will show in Backup Vaults in AWS Backups
+Jobs are going to be the jobs that are scheduled.
+We have backup jobs, restore jobs, copy jobs.
