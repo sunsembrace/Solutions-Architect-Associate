@@ -1505,3 +1505,6 @@ So we have 3ways to access EC2s
 Open the port 22 and then use SSH keys, and use terminal with ssh command
 EC2 instance Connect
 Systems Manager - SSM session Manager via an IAM role (instance profile) to connect to systems manager.
+
+106. Trusted Advisor Hands on Labs.
+Trusted Advisor → Recommendations → can view tabs for cost optimization, performance, security, fault tolerance, service limits, operational excellency. → It shows us the recommended actions needed on our actions e.g s3 bucket is public, sg group has specific ports unrestricted → On free version we only get access to security and service limits.
