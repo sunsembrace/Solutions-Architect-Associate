@@ -1488,3 +1488,9 @@ Can also update the stack by clicking update and then click “replace existing 
 We can then click resources to see a new instance created with the features. 
 We also see an event saying clean up to signify the previous EC2 instance being deleted as we replaced it.
 Can go to the template tab and click View in Application Composer → View new architecture visually.
+
+104. CloudFormation Service Role Hands on Labs.
+CloudFormation Service Role Hands on Labs.
+IAM → Create role → AWS Service → Permissions policies → e.g AmazonS3FullAccess → DemoRoleForCFNwithS3Capabilities.
+
+Then go to CloudFormation → Create stack → Template is ready, upload a template file → next → stackname = DemoRole → Permission IAM role - Optional = Pick the DemoRoleforCFNwithS3Capabilities → Submit
