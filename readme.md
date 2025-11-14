@@ -1494,3 +1494,14 @@ CloudFormation Service Role Hands on Labs.
 IAM → Create role → AWS Service → Permissions policies → e.g AmazonS3FullAccess → DemoRoleForCFNwithS3Capabilities.
 
 Then go to CloudFormation → Create stack → Template is ready, upload a template file → next → stackname = DemoRole → Permission IAM role - Optional = Pick the DemoRoleforCFNwithS3Capabilities → Submit
+
+105. Systems Manager - SSM Session Manager Hands on Labs.
+First launch an EC2  → Disable SSH traffic → attach an IAM instance profile to allow it to talk to the SSM service → so Create new IAM profile →  Create role AWS service, EC2, SSM filter then AmazonSSMManagerInstanceCore → DemoEC2RoleForSSM →  Create role → 
+Now that role is created, refresh the tab and select DemoEC2rolefor SSM for the IAM instance profile → Launch instance.
+
+Ssm → Fleet manager → Get started (all ec2s registered with ssm will show here and are known as managed nodes → will show your ec2 and a bunch of its properties → Now we are ready to run a secure shell against it → Click session Manager tab (This is a way to access our Linux instances and Windows instances) → Start session → select it → shows us a cloudshell now and we didn’t have to ssh into it (our EC2 even has no inbound rules) → can ping google.com → can do host → it’ll give us the IP of it and we can check our EC2 tab and click properties and see both IPs match to prove its the same EC2 → 
+
+So we have 3ways to access EC2s
+Open the port 22 and then use SSH keys, and use terminal with ssh command
+EC2 instance Connect
+Systems Manager - SSM session Manager via an IAM role (instance profile) to connect to systems manager.
