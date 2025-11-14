@@ -1477,3 +1477,14 @@ EC2 → EBS Volume → 1GB → Key, value = Environment, Production → This mak
 Backups will show in Backup Vaults in AWS Backups
 Jobs are going to be the jobs that are scheduled.
 We have backup jobs, restore jobs, copy jobs.
+
+103. CloudFormation Hands On Labs.
+CloudFormation → Create stack = Choose existing template, specify template = Upload a template file, remember to be in same region as your template AZ and ImageID ami as these are region scoped → View in application composer to get visual feedback of our current template → next → Provide a stackname =  CloudFormationDemo  → Next → Tags = Name, CFDemo, → Next → Review and create → Submit → 
+
+Can then view the events of the template you uploaded and the resource it created, which you can further inspect to see what properties it has e.g ec2 and shows instance type and ami ID, can also view its tags and the name we specified.
+
+Can also update the stack by clicking update and then click “replace existing template” → Choose new file → next → fill parameters, → next → Shows change set preview, e.g new template could include an SG  and EIP and shows modify next to pre-existing template → Submit.
+
+We can then click resources to see a new instance created with the features. 
+We also see an event saying clean up to signify the previous EC2 instance being deleted as we replaced it.
+Can go to the template tab and click View in Application Composer → View new architecture visually.
